@@ -1,0 +1,5 @@
+<template>
+    <svg viewBox="0 0 24 24" focusable="false" style="pointer-events: none">
+        <g><path d="M4,20h14v1H3V6h1V20z M21,3v15H6V3H21z M17,10.5L11,7v7L17,10.5z"></path></g>
+    </svg>
+</template>
