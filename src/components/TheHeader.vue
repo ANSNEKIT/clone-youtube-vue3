@@ -1,6 +1,6 @@
 <template>
-    <header class="bg-white">
-        <div id="container" class="px-4 h-14 w-full flex flex-row items-center justify-between">
+    <header class="bg-white fixed top-0 left-0 z-10 w-full h-14">
+        <div id="container" class="px-4 h-full w-full flex flex-row items-center justify-between">
             <div id="left" class="flex flex-row items-center justify-between">
                 <button class="w-10 p-2 m-0 rounded-full active:shadow-lg">
                     <IconBar width="24" height="24" class="w-6 text-black" />
