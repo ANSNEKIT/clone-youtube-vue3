@@ -2,6 +2,7 @@
 import TheHeader from './components/TheHeader.vue'
 import TheAside from './components/TheAside.vue'
 import TheCategories from './components/TheCategories.vue'
+import TheContent from './components/TheContent.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import TheCategories from './components/TheCategories.vue'
         <TheHeader />
         <TheAside />
         <TheCategories />
+        <TheContent />
     </div>
 </template>
 
