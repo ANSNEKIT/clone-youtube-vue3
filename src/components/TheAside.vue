@@ -12,7 +12,7 @@
                                 v-if="activeIcon === 'home'"
                                 width="24"
                                 height="24"
-                                class="w-6 h-6 mr-6"
+                                class="w-6.5 h-6.5 mr-6"
                             />
                             <IconHome
                                 v-else
