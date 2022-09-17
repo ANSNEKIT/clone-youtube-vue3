@@ -1,5 +1,7 @@
 <template>
-    <aside class="w-[72px] pt-14 fixed top-0 z-[8] max-h-screen h-full overflow-hidden bg-white">
+    <aside
+        class="xl:hidden w-[72px] pt-14 fixed top-0 z-[8] max-h-screen h-full overflow-hidden bg-white"
+    >
         <div id="aside-container" class="mt-1 h-full overflow-x-hidden overflow-y-auto">
             <section class="">
                 <ul class="">
