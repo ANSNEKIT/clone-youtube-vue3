@@ -1,6 +1,8 @@
 <template>
-    <aside class="w-[240px] pt-14 fixed top-0 z-[8] max-h-screen h-full overflow-hidden bg-white">
-        <div id="aside-container" class="h-full overflow-y-auto">
+    <aside
+        class="hidden xl:block w-[240px] pt-14 fixed top-0 z-[8] max-h-screen h-full overflow-hidden bg-white"
+    >
+        <div id="aside-container" class="h-full overflow-x-hidden overflow-y-auto">
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
                     <li class="">
