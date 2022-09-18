@@ -1,6 +1,6 @@
 <template>
     <section
-        class="ml-[72px] xl:ml-[240px] h-[56px] px-6 py-3 fixed top-[56px] z-[7] bg-white border-y border-y-black/10 whitespace-nowrap overflow-hidden"
+        class="md:ml-[72px] xl:ml-[240px] h-[56px] px-6 py-3 fixed top-[56px] z-[7] bg-white border-y border-y-black/10 whitespace-nowrap overflow-hidden"
     >
         <div class="w-full flex space-x-3">
             <button
