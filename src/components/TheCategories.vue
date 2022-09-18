@@ -1,6 +1,8 @@
 <template>
-    <section class="w-full px-6 py-3 fixed top-14 z-[7] bg-white border-y border-y-black/10">
-        <div class="ml-[240px] w-full flex space-x-3">
+    <section
+        class="ml-[72px] xl:ml-[240px] h-[56px] px-6 py-3 fixed top-[56px] z-[7] bg-white border-y border-y-black/10 whitespace-nowrap overflow-hidden"
+    >
+        <div class="w-full flex space-x-3">
             <button
                 class="px-3 py-1.5 max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 border-black/10"
                 :class="{

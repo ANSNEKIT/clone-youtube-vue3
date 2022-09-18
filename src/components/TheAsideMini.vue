@@ -1,27 +1,21 @@
 <template>
     <aside
-        class="xl:hidden w-[72px] pt-14 fixed top-0 z-[8] max-h-screen h-full overflow-hidden bg-white"
+        id="aside-mini"
+        class="hidden md:block xl:!hidden w-[72px] pt-[56px] fixed top-0 z-[8] min-h-screen h-full overflow-hidden bg-white"
     >
-        <div id="aside-container" class="mt-1 h-full overflow-x-hidden overflow-y-auto">
+        <div id="aside-container" class="mt-1 h-full">
             <section class="">
                 <ul class="">
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-[10px] leading-4 hover:bg-neutral-100 active:bg-neutral-300"
                         >
                             <IconHomeSolid
                                 v-if="activeIcon === 'home'"
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5"
+                                class="w-[24px] h-[24px] mb-1.5"
                             />
-                            <IconHome
-                                v-else
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5 stroke-1"
-                            />
+                            <IconHome v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
 
                             <span class="flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
                                 >Главная</span
@@ -35,16 +29,9 @@
                         >
                             <IconCompassSolid
                                 v-if="activeIcon === 'compass'"
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5"
+                                class="w-[24px] h-[24px] mb-1.5"
                             />
-                            <IconCompass
-                                v-else
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5 stroke-1"
-                            />
+                            <IconCompass v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
 
                             <span class="flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
                                 >Навигатор</span
@@ -58,16 +45,9 @@
                         >
                             <IconShortsSolid
                                 v-if="activeIcon === 'shorts'"
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5"
+                                class="w-[24px] h-[24px] mb-1.5"
                             />
-                            <IconShorts
-                                v-else
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5 stroke-1"
-                            />
+                            <IconShorts v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
 
                             <span class="flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
                                 >Shorts</span
@@ -81,16 +61,9 @@
                         >
                             <IconSubscribeSolid
                                 v-if="activeIcon === 'subscribe'"
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5"
+                                class="w-[24px] h-[24px] mb-1.5"
                             />
-                            <IconSubscribe
-                                v-else
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5 stroke-1"
-                            />
+                            <IconSubscribe v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
 
                             <span class="flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
                                 >Подписки</span
@@ -104,16 +77,9 @@
                         >
                             <IconLibrarySolid
                                 v-if="activeIcon === 'library'"
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5"
+                                class="w-[24px] h-[24px] mb-1.5"
                             />
-                            <IconLibrary
-                                v-else
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5 stroke-1"
-                            />
+                            <IconLibrary v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
 
                             <span class="flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
                                 >Библиотека</span
@@ -127,16 +93,9 @@
                         >
                             <IconHistorySolid
                                 v-if="activeIcon === 'history'"
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5"
+                                class="w-[24px] h-[24px] mb-1.5"
                             />
-                            <IconHistory
-                                v-else
-                                width="24"
-                                height="24"
-                                class="w-6.5 h-6.5 mb-1.5 stroke-1"
-                            />
+                            <IconHistory v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
 
                             <span class="flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
                                 >История</span

@@ -1,6 +1,8 @@
 <template>
-    <main class="ml-[240px] pt-32 px-6 pb-6 bg-gray-50 min-h-screen">
-        <section class="pb-10 grid grid-cols-4 gap-x-4 gap-y-10">
+    <main class="ml-[72px] xl:ml-[240px] mt-[128px] px-6 pb-6 bg-gray-50 min-h-screen">
+        <section
+            class="pb-10 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-10"
+        >
             <div>
                 <div class="relative">
                     <a href="#">
@@ -850,7 +852,7 @@
         </section>
         <section
             id="mini"
-            class="py-10 grid grid-cols-4 gap-x-4 gap-y-10 border-t-4 border-t-black/10"
+            class="py-10 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-10 border-t-4 border-t-black/10"
         >
             <div>
                 <div class="relative">
@@ -1402,7 +1404,9 @@
                 <IconDown class="w-6.5 h-6.5" width="24" height="24" />
             </button>
         </section>
-        <section class="py-10 grid grid-cols-4 gap-x-4 gap-y-10 border-t-4 border-t-black/10">
+        <section
+            class="py-10 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-10 border-t-4 border-t-black/10"
+        >
             <div>
                 <div class="relative">
                     <a href="#">
