@@ -5,17 +5,19 @@ module.exports = {
         extend: {
             screens: {
                 'esm': '200px',
-                // => @media (min-width: 200px) { ... }
                 '2esm': '245px',
-                // => @media (min-width: 245px) { ... }
                 '3esm': '512px',
-                // => @media (min-width: 512px) { ... }
                 '4esm': '600px',
-                // => @media (min-width: 600px) { ... }
+                // 'sm': '640px',
                 '2sm': '710px',
-                // => @media (min-width: 7100px) { ... }
+                // 'md': '768px',
+                '3sm': '890px',
+                // 'lg': '1024px',
                 '2lg': '1140px',
-                // => @media (min-width: 11405px) { ... }
+                // 'xl': '1280px',
+                // '2xl': '1536px',
+                '3xl': '1970px',
+                '4xl': '2300px',
             },
         },
     },
