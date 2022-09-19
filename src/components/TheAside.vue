@@ -1,8 +1,20 @@
 <template>
     <aside
-        class="hidden xl:block w-[240px] pt-14 fixed top-0 z-[8] max-h-screen h-full overflow-hidden bg-white"
+        class="w-[240px] max-h-screen h-full overflow-hidden bg-white"
+        :class="{ 'hidden xl:block pt-14 fixed top-0 z-[8]': !isMobile, 'opacity-100': isMobile }"
     >
         <div id="aside-container" class="h-full overflow-x-hidden overflow-y-auto">
+            <section v-if="isMobile" class="h-[56px] pl-4 sticky top-0 flex items-center bg-white">
+                <button class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg">
+                    <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
+                </button>
+                <div class="flex flex-row items-center justify-between">
+                    <a href="#" class="py-[18px] px-4">
+                        <IconLogo width="90" height="20" class="w-[90px] h-[20px]" />
+                    </a>
+                    <span class="-ml-3 mb-5 text-neutral-600 text-[10px]">RU</span>
+                </div>
+            </section>
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
                     <li class="">
@@ -481,6 +493,14 @@ import IconSettings from './icons/IconSettings.vue'
 import IconFlag from './icons/IconFlag.vue'
 import IconAbout from './icons/IconAbout.vue'
 import IconFeedback from './icons/IconFeedback.vue'
+import IconBar from './icons/IconBar.vue'
+import IconLogo from './icons/IconLogo.vue'
 
 const activeIcon = ref('')
+defineProps({
+    isMobile: {
+        type: Boolean,
+        default: false,
+    },
+})
 </script>
