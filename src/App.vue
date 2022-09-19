@@ -4,7 +4,6 @@ import TheAside from './components/TheAside.vue'
 import TheCategories from './components/TheCategories.vue'
 import TheContent from './components/TheContent.vue'
 import TheAsideMini from './components/TheAsideMini.vue'
-import TheAsideMobile from './components/TheAsideMobile.vue'
 </script>
 
 <template>
@@ -15,7 +14,6 @@ import TheAsideMobile from './components/TheAsideMobile.vue'
         <div class="hidden fixed inset-0 bg-black/50 z-20">
             <TheAside :is-mobile="true" />
         </div>
-        <!-- <TheAsideMobile /> -->
         <TheCategories />
         <TheContent />
     </div>
