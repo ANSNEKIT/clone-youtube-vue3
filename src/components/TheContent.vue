@@ -1,7 +1,7 @@
 <template>
-    <main class="md:ml-[72px] xl:ml-[240px] mt-[128px] px-10 3esm:px-0 4esm:px-6 md:!px-5 pb-6">
+    <main class="md:ml-[72px] xl:ml-[240px] mt-[128px] px-10 3esm:px-0 4esm:px-6 pb-6">
         <div
-            class="bg-gray-50 min-h-screen 3sm:max-w-none 4esm:max-w-[670px] xl:!max-w-[1500px] 3xl:!max-w-[1840px] mx-auto"
+            class="bg-gray-50 min-h-screen 3sm:max-w-none 4esm:max-w-[670px] xl:!max-w-[1500px] 3xl:!max-w-[1840px] mx-auto overflow-x-hidden"
         >
             <section
                 class="pb-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center"
