@@ -1,15 +1,23 @@
 <template>
     <aside
         class="w-[240px] max-h-screen h-full overflow-hidden bg-white"
-        :class="{ 'hidden xl:block pt-14 fixed top-0 z-[8]': !isMobile, 'opacity-100': isMobile }"
+        :class="{
+            'hidden xl:block pt-[56px] fixed top-0 z-[8]': !isMobile,
+            'opacity-100': isMobile,
+        }"
     >
         <div id="aside-container" class="h-full overflow-x-hidden overflow-y-auto">
             <section v-if="isMobile" class="h-[56px] pl-4 sticky top-0 flex items-center bg-white">
-                <button class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg">
+                <button
+                    class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg focus:bg-black/10"
+                >
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </button>
-                <div class="flex flex-row items-center justify-between">
-                    <a href="#" class="py-[18px] px-4">
+                <div class="flex items-center justify-between">
+                    <a
+                        href="#"
+                        class="py-[18px] px-4 rounded-sm active:outline-none visited:outline-none focus:outline focus:outline-2"
+                    >
                         <IconLogo width="90" height="20" class="w-[90px] h-[20px]" />
                     </a>
                     <span class="-ml-3 mb-5 text-neutral-600 text-[10px]">RU</span>
@@ -20,7 +28,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'home',
+                            }"
                         >
                             <IconHomeSolid
                                 v-if="activeIcon === 'home'"
@@ -44,7 +56,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconCompassSolid
                                 v-if="activeIcon === 'compass'"
@@ -68,7 +84,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconShortsSolid
                                 v-if="activeIcon === 'shorts'"
@@ -92,7 +112,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconSubscribeSolid
                                 v-if="activeIcon === 'subscribe'"
@@ -120,7 +144,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconLibrarySolid
                                 v-if="activeIcon === 'library'"
@@ -144,7 +172,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconHistorySolid
                                 v-if="activeIcon === 'history'"
@@ -173,7 +205,7 @@
                     каналы.
                 </p>
                 <button
-                    class="mt-3 px-3.5 py-1 flex flex-1 items-center align-middle tracking-[0.5px] font-medium whitespace-nowrap text-base uppercase text-[#065fd4] border border-[#065fd4]"
+                    class="mt-3 px-3.5 py-1 flex flex-1 items-center align-middle tracking-[0.5px] font-medium whitespace-nowrap text-base uppercase text-[#065fd4] border border-[#065fd4] focus:border-2"
                 >
                     <IconUser width="24" height="24" class="w-6.5 h-6.5 mr-1.5 fill-current" />
                     Войти
@@ -189,7 +221,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconFilmSolid
                                 v-if="activeIcon === 'film'"
@@ -213,7 +249,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconGameSolid
                                 v-if="activeIcon === 'game'"
@@ -237,7 +277,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconTranslationSolid
                                 v-if="activeIcon === 'translation'"
@@ -261,7 +305,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconSportSolid
                                 v-if="activeIcon === 'sport'"
@@ -289,7 +337,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconPlus width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
 
@@ -311,7 +363,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconUMusic width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
 
@@ -324,7 +380,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconUKids width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
 
@@ -337,7 +397,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconUTV width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
 
@@ -354,7 +418,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconSettings
                                 width="24"
@@ -371,7 +439,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconFlag width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
 
@@ -384,7 +456,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconAbout width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
 
@@ -397,7 +473,11 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex items-center px-6 py-2.5 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex items-center px-6 py-2.5 hover:bg-black/5 focus:bg-black/5 outline-0"
+                            :class="{
+                                'text-black bg-black/10 font-medium hover:bg-black/20 focus:bg-black/20':
+                                    activeIcon === 'any',
+                            }"
                         >
                             <IconFeedback
                                 width="24"
@@ -496,7 +576,7 @@ import IconFeedback from './icons/IconFeedback.vue'
 import IconBar from './icons/IconBar.vue'
 import IconLogo from './icons/IconLogo.vue'
 
-const activeIcon = ref('')
+const activeIcon = ref('home')
 defineProps({
     isMobile: {
         type: Boolean,

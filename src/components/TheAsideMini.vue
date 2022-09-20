@@ -9,7 +9,7 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-[10px] leading-4 hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-[10px] leading-4 hover:bg-black/5 focus:bg-black/5"
                         >
                             <IconHomeSolid
                                 v-if="activeIcon === 'home'"
@@ -25,7 +25,7 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-black/5 focus:bg-black/5"
                         >
                             <IconCompassSolid
                                 v-if="activeIcon === 'compass'"
@@ -41,7 +41,7 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-black/5 focus:bg-black/5"
                         >
                             <IconShortsSolid
                                 v-if="activeIcon === 'shorts'"
@@ -57,7 +57,7 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-black/5 focus:bg-black/5"
                         >
                             <IconSubscribeSolid
                                 v-if="activeIcon === 'subscribe'"
@@ -73,7 +73,7 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-black/5 focus:bg-black/5"
                         >
                             <IconLibrarySolid
                                 v-if="activeIcon === 'library'"
@@ -89,7 +89,7 @@
                     <li class="">
                         <a
                             href="#"
-                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-neutral-100 active:bg-neutral-300"
+                            class="flex flex-col items-center pt-[16px] pb-4 text-xs hover:bg-black/5 focus:bg-black/5"
                         >
                             <IconHistorySolid
                                 v-if="activeIcon === 'history'"
