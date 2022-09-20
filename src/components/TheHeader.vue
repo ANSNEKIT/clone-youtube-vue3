@@ -73,9 +73,10 @@
             </div>
             <div id="right" class="min-w-max sm:min-w-[225px] flex items-center justify-end">
                 <button
-                    class="mr-2 flex items-center justify-center rounded-full w-[40px] h-[40px] active:bg-neutral-50 active:border active:border-gray-200"
+                    class="mr-2 w-[40px] h-[40px] relative group flex items-center justify-center rounded-full active:bg-neutral-50 active:border active:border-gray-200"
                 >
                     <IconMore class="w-[24px] h-[24px] text-[#030303]" />
+                    <AppHeaderDropdown class="hidden" />
                 </button>
                 <button
                     class="py-[5px] px-[11px] flex items-center align-middle tracking-[0.5px] font-medium whitespace-nowrap text-base uppercase text-[#065fd4] border border-[#065fd4]"
@@ -96,4 +97,5 @@ import IconMicrophone from './icons/IconMicrophone.vue'
 import IconMore from './icons/IconMore.vue'
 import IconUser from './icons/IconUser.vue'
 import IconClose from './icons/IconClose.vue'
+import AppHeaderDropdown from './AppHeaderDropdown.vue'
 </script>
