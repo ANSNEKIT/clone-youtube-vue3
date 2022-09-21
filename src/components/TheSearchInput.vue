@@ -48,6 +48,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import IconSearch from './icons/IconSearch.vue'
+import IconClose from './icons/IconClose.vue'
 
 const hasFocus = ref(false)
 </script>

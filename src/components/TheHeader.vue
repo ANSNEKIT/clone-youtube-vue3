@@ -29,7 +29,7 @@
                     class="mr-2 w-[40px] h-[40px] relative group flex items-center justify-center rounded-full active:bg-neutral-50 active:border active:border-gray-200 focus:bg-black/10"
                 >
                     <IconMore class="w-[24px] h-[24px] text-[#030303]" />
-                    <TheDropdownSettings />
+                    <TheDropdownSettings class="hidden" />
                 </button>
                 <ButtonLogin />
             </div>
@@ -39,10 +39,8 @@
 
 <script setup lang="ts">
 import IconBar from './icons/IconBar.vue'
-import IconSearch from './icons/IconSearch.vue'
 import IconMicrophone from './icons/IconMicrophone.vue'
 import IconMore from './icons/IconMore.vue'
-import IconUser from './icons/IconUser.vue'
 import TheDropdownSettings from './TheDropdownSettings.vue'
 import LogoMain from './LogoMain.vue'
 import TheSearch from './TheSearch.vue'
