@@ -95,7 +95,7 @@
                     class="mr-2 w-[40px] h-[40px] relative group flex items-center justify-center rounded-full active:bg-neutral-50 active:border active:border-gray-200 focus:bg-black/10"
                 >
                     <IconMore class="w-[24px] h-[24px] text-[#030303]" />
-                    <AppHeaderDropdown class="hidden" />
+                    <TheDropdownSettings class="hidden" />
                 </button>
                 <button
                     class="py-[5px] px-[11px] flex items-center align-middle tracking-[0.5px] font-medium whitespace-nowrap text-base uppercase text-[#065fd4] border border-[#065fd4] focus:border-2"
@@ -118,7 +118,7 @@ import IconMicrophone from './icons/IconMicrophone.vue'
 import IconMore from './icons/IconMore.vue'
 import IconUser from './icons/IconUser.vue'
 import IconClose from './icons/IconClose.vue'
-import AppHeaderDropdown from './AppHeaderDropdown.vue'
+import TheDropdownSettings from './TheDropdownSettings.vue'
 
 const hasFocus = ref(false)
 </script>

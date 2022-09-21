@@ -5,8 +5,8 @@
                 <a href="#" class="outline-none">
                     <img
                         class="max-h-full max-w-full object-contain"
-                        src="https://random.imagecdn.app/720/404"
-                        alt=""
+                        :src="videoImg"
+                        alt="unsplash-preview"
                         @mouseenter="hasHover = true"
                         @mouseleave="hasHover = false"
                     />
@@ -29,7 +29,7 @@
                         class="rounded-full w-[36px] h-[36px]"
                         width="36"
                         height="36"
-                        src="https://random.imagecdn.app/36/36"
+                        :src="userProfileImg"
                         alt="profile-icon"
                     />
                 </a>
@@ -70,7 +70,7 @@
                         </div>
                         <div v-if="isStream">
                             <p
-                                class="mb-1 text-[#606060] text-sm 2xl:text-base overflow-hidden text-ellipsis whitespace-nowrap whitespace-nowrap"
+                                class="mb-1 text-[#606060] text-sm 2xl:text-base overflow-hidden text-ellipsis whitespace-nowrap"
                             >
                                 Зрителей: 1,3 тыс.
                             </p>
@@ -202,13 +202,19 @@ import IconCheck from './icons/IconCheck.vue'
 import IconTranslation from './icons/IconTranslation.vue'
 import IconMore from './icons/IconMore.vue'
 
-defineProps({
+const props = defineProps({
+    id: {
+        type: Number,
+        default: 1,
+    },
     isStream: {
         type: Boolean,
         default: false,
     },
 })
 
+const videoImg = `https://source.unsplash.com/random/360x200?sig=${props.id}`
+const userProfileImg = `https://source.unsplash.com/random/36x36?sig=${props.id}`
 const hasFocusTitle = ref(false)
 const hasHover = ref(false)
 </script>

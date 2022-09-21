@@ -2,7 +2,7 @@
 import TheHeader from './components/TheHeader.vue'
 import TheAside from './components/TheAside.vue'
 import TheCategories from './components/TheCategories.vue'
-import TheContent from './components/TheContent.vue'
+import TheVideos from './components/TheVideos.vue'
 import TheAsideMini from './components/TheAsideMini.vue'
 </script>
 
@@ -15,7 +15,7 @@ import TheAsideMini from './components/TheAsideMini.vue'
             <TheAside :is-mobile="true" />
         </div>
         <TheCategories />
-        <TheContent />
+        <TheVideos />
     </div>
 </template>
 
