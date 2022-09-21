@@ -6,7 +6,7 @@
             <section
                 class="pb-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center"
             >
-                <TheVideo
+                <VideoItem
                     v-for="(video, index) in firstSection"
                     :id="index"
                     :key="video.id"
@@ -21,7 +21,7 @@
                     </a>
                 </h2>
                 <div class="mb-10 grid grid-cols-9 gap-x-4 gap-y-10">
-                    <TheVideoShort v-for="i in 8" :id="i" :key="i" />
+                    <VideoShortItem v-for="i in 8" :id="i" :key="i" />
                 </div>
                 <button
                     class="py-1 w-full h-[40px] flex flex-1 justify-center items-center rounded-sm hover:bg-black/10"
@@ -33,12 +33,12 @@
                 id="mini"
                 class="py-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center border-t-4 border-t-black/10"
             >
-                <TheVideo v-for="i in 4" :id="i" :key="i" />
+                <VideoItem v-for="i in 4" :id="i" :key="i" />
             </section>
             <section id="trends" class="border-t-4 border-t-black/10">
                 <h2 class="my-6 ml-2 text-[#030303] text-2xl"><a href="#"> В тренде </a></h2>
                 <div class="mb-10 grid grid-cols-4 gap-x-4 gap-y-10">
-                    <TheVideo
+                    <VideoItem
                         v-for="(video, index) in sectionTrends"
                         :id="index"
                         :key="video.id"
@@ -54,7 +54,7 @@
             <section
                 class="py-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center border-t-4 border-t-black/10"
             >
-                <TheVideo v-for="i in 24" :id="i" :key="i" />
+                <VideoItem v-for="i in 24" :id="i" :key="i" />
             </section>
         </div>
     </main>
@@ -63,8 +63,8 @@
 <script setup lang="ts">
 import IconDown from './icons/IconDown.vue'
 import IconShortsColorized from './icons/IconShortsColorized.vue'
-import TheVideo from './TheVideo.vue'
-import TheVideoShort from './TheVideoShort.vue'
+import VideoItem from './VideoItem.vue'
+import VideoShortItem from './VideoShortItem.vue'
 
 const getRandomId = (length: number) => {
     let result = ''

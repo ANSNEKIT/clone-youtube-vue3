@@ -13,15 +13,7 @@
                 >
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </button>
-                <div class="flex items-center justify-between">
-                    <a
-                        href="#"
-                        class="py-[18px] px-4 rounded-sm active:outline-none visited:outline-none focus:outline focus:outline-2"
-                    >
-                        <IconLogo width="90" height="20" class="w-[90px] h-[20px]" />
-                    </a>
-                    <span class="-ml-3 mb-5 text-neutral-600 text-[10px]">RU</span>
-                </div>
+                <LogoMain />
             </section>
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
@@ -204,12 +196,7 @@
                     Вы сможете ставить отметки "Нравится", писать комментарии и подписываться на
                     каналы.
                 </p>
-                <button
-                    class="mt-3 px-3.5 py-1 flex flex-1 items-center align-middle tracking-[0.5px] font-medium whitespace-nowrap text-base uppercase text-[#065fd4] border border-[#065fd4] focus:border-2"
-                >
-                    <IconUser width="24" height="24" class="w-6.5 h-6.5 mr-1.5 fill-current" />
-                    Войти
-                </button>
+                <ButtonLogin class="mt-3" />
             </section>
             <section class="py-2 border-b border-b-black/10">
                 <h3
@@ -575,6 +562,8 @@ import IconAbout from './icons/IconAbout.vue'
 import IconFeedback from './icons/IconFeedback.vue'
 import IconBar from './icons/IconBar.vue'
 import IconLogo from './icons/IconLogo.vue'
+import LogoMain from './LogoMain.vue'
+import ButtonLogin from './ButtonLogin.vue'
 
 const activeIcon = ref('home')
 defineProps({

@@ -14,130 +14,20 @@
             </div>
 
             <div class="inline-block transition translate-x-0">
-                <div
-                    class="px-6 py-[11px] mx-auto w-full flex space-x-3 max-w-screen-4xl overflow-x-auto whitespace-nowrap"
+                <ul
+                    class="px-6 py-[11px] first-letter:py-[11px] mx-auto w-full flex max-w-screen-4xl overflow-x-auto whitespace-nowrap"
                 >
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            '!bg-black !text-white': activeItem === 'all',
-                        }"
-                    >
-                        Все
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Видеоигры
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Музыка
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Сейчас в эфире
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Ситкомы
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Анимация
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Туризм
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Кулинарные шоу
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Футбол
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Природа
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Туристические направления
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Кулинария
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Ремесла
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Изобразительное искусство
-                    </button>
-                    <button
-                        class="px-3 py-1 h-[32px] min-w-[50px] max-w-[15.5rem] text-base overflow-hidden text-ellipsis whitespace-nowrap border rounded-full bg-black/5 hover:bg-black/10 focus:bg-black/10 border-black/10"
-                        :class="{
-                            'bg-black text-white': activeItem === 'any',
-                        }"
-                    >
-                        Последние опубликованные видео
-                    </button>
-                </div>
+                    <li class="space-x-3">
+                        <CategotyItem
+                            v-for="(category, index) in categories"
+                            :id="index"
+                            :key="index"
+                            :is-active="index === activeItemIndex"
+                            :category="category"
+                            @change-active-category="activeItemIndex = $event"
+                        />
+                    </li>
+                </ul>
             </div>
 
             <div class="h-full absolute z-10 right-[240px] top-0 flex">
@@ -156,5 +46,24 @@
 import { ref } from 'vue'
 import IconArrowRight from './icons/IconArrowRight.vue'
 import IconArrowLeft from './icons/IconArrowLeft.vue'
-const activeItem = ref('all')
+import CategotyItem from './CategotyItem.vue'
+
+const activeItemIndex = ref(0)
+const categories = [
+    'Все',
+    'Видеоигры',
+    'Музыка',
+    'Сейчас в эфире',
+    'Ситкомы',
+    'Анимация',
+    'Туризм',
+    'Кулинарные шоу',
+    'Футбол',
+    'Природа',
+    'Туристические направления',
+    'Кулинария',
+    'Ремесла',
+    'Изобразительное искусство',
+    'Последние опубликованные видео',
+]
 </script>
