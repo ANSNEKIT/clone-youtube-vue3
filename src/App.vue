@@ -1,22 +1,18 @@
 <script setup lang="ts">
-import TheHeader from './components/TheHeader.vue'
-import TheSidebar from './components/TheSidebar.vue'
+import { computed } from 'vue'
+
 import TheCategories from './components/TheCategories.vue'
 import TheVideos from './components/TheVideos.vue'
-import TheSidebarMini from './components/TheSidebarMini.vue'
+import LayoutDefault from './layouts/LayoutDefault.vue'
+
+const layout = computed(() => LayoutDefault)
 </script>
 
 <template>
     <div>
-        <TheHeader />
-        <TheSidebarMini />
-        <TheSidebar />
-        <div class="hidden fixed inset-0 bg-black/50 z-20">
-            <TheSidebar :is-mobile="true" />
-        </div>
-        <TheCategories />
-        <TheVideos />
+        <component :is="layout">
+            <TheCategories />
+            <TheVideos />
+        </component>
     </div>
 </template>
-
-<style scoped></style>

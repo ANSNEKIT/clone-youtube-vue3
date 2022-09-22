@@ -1,15 +1,16 @@
 <template>
     <aside
-        class="w-[240px] max-h-screen h-full overflow-hidden bg-white"
+        class="w-[240px] max-h-screen h-full fixed top-0 overflow-hidden bg-white"
         :class="{
-            'hidden xl:block pt-[56px] fixed top-0 z-[8]': !isMobile,
-            'opacity-100': isMobile,
+            'hidden xl:block pt-[56px] z-[8]': !isMobile,
+            'z-30': isMobile,
         }"
     >
         <div id="aside-container" class="h-full overflow-x-hidden overflow-y-auto">
             <div v-if="isMobile" class="w-[240px] h-[56px] pl-4 sticky top-0 flex items-center bg-white">
                 <button
                     class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg focus:bg-black/10"
+                    @click="$emit('toggleSidebar')"
                 >
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </button>
@@ -203,51 +204,7 @@
                 </ul>
             </SidebarSection>
 
-            <SidebarSection id="footer" class="py-4 px-6">
-                <div
-                    id="guide-links-primary"
-                    class="mb-3 text-[#606060] font-medium text-sm leading-5 tracking-[0.25px]"
-                >
-                    <a class="mr-2 inline-block" href="https://www.youtube.com/about/">О сервисе</a>
-                    <a class="mr-2 inline-block" href="https://www.youtube.com/about/press"
-                        >Прессе</a
-                    >
-                    <a class="mr-2 inline-block" href="https://www.youtube.com/about/copyright"
-                        >Авторские права</a
-                    >
-                    <a class="mr-2 inline-block" href="/t/contact_us">Связаться с нами</a>
-                    <a class="mr-2 inline-block" href="https://www.youtube.com/creators/"
-                        >Авторам</a
-                    >
-                    <a class="mr-2 inline-block" href="https://www.youtube.com/ads/"
-                        >Рекламодателям</a
-                    >
-                    <a class="mr-2 inline-block" href="https://developers.google.com/youtube"
-                        >Разработчикам</a
-                    >
-                </div>
-                <div
-                    id="guide-links-secondary"
-                    class="mb-4 text-[#606060] font-medium text-sm leading-5 tracking-[0.25px]"
-                >
-                    <a class="mr-2 inline-block" href="/t/terms">Условия использования</a>
-                    <a class="mr-2 inline-block" href="/t/privacy">Конфиденциальность</a>
-                    <a class="mr-2 inline-block" href="https://www.youtube.com/about/policies"
-                        >Правила и безопасность</a
-                    >
-                    <a
-                        class="mr-2 inline-block"
-                        href="https://www.youtube.com/howyoutubeworks?utm_campaign=ytgen&utm_source=ythp&utm_medium=LeftNav&utm_content=txt&u=https%3A%2F%2Fwww.youtube.com%2Fhowyoutubeworks%3Futm_source%3Dythp%26utm_medium%3DLeftNav%26utm_campaign%3Dytgen"
-                        >Как работает YouTube</a
-                    >
-                    <a class="mr-2 inline-block" href="/new">Тестирование новых функций</a>
-                </div>
-                <div id="copyright">
-                    <p class="text-[#909090] text-[12px] leading-[16px] tracking-[0.25px]">
-                        © 2022 Google LLC
-                    </p>
-                </div>
-            </SidebarSection>
+            <TheFooter />
         </div>
     </aside>
 </template>
@@ -287,6 +244,7 @@ import LogoMain from './LogoMain.vue'
 import ButtonLogin from './ButtonLogin.vue'
 import SidebarItem from './SidebarItem.vue'
 import SidebarSection from './SidebarSection.vue'
+import TheFooter from './TheFooter.vue'
 
 defineProps({
     isMobile: {
@@ -294,6 +252,7 @@ defineProps({
         default: false,
     },
 })
+defineEmits(['toggleSidebar'])
 
 const activeItem = ref('home')
 </script>
