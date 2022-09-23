@@ -1,16 +1,24 @@
 <template>
     <aside
-        class="w-[240px] max-h-screen h-full fixed top-0 overflow-hidden bg-white"
+        ref="sidebarMobileRef"
+        class="w-[240px] max-h-screen h-full fixed top-0 overflow-hidden bg-white outline-none"
         :class="{
-            'hidden xl:block pt-[56px] z-[8]': !isMobile,
+            'pt-[56px] z-[8]': !isMobile,
             'z-30': isMobile,
+            'xl:block': isOpen,
+            '!hidden': !isOpen,
         }"
+        tabindex="-1"
+        @keydown.esc="$emit('close')"
     >
         <div id="aside-container" class="h-full overflow-x-hidden overflow-y-auto">
-            <div v-if="isMobile" class="w-[240px] h-[56px] pl-4 sticky top-0 flex items-center bg-white">
+            <div
+                v-if="isMobile"
+                class="w-[240px] h-[56px] pl-4 sticky top-0 flex items-center bg-white"
+            >
                 <button
                     class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg focus:bg-black/10"
-                    @click="$emit('toggleSidebar')"
+                    @click="$emit('close')"
                 >
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </button>
@@ -210,7 +218,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 import IconHome from './icons/IconHome.vue'
 import IconHomeSolid from './icons/IconHomeSolid.vue'
 import IconCompass from './icons/IconCompass.vue'
@@ -246,13 +254,35 @@ import SidebarItem from './SidebarItem.vue'
 import SidebarSection from './SidebarSection.vue'
 import TheFooter from './TheFooter.vue'
 
-defineProps({
+const props = defineProps({
     isMobile: {
         type: Boolean,
         default: false,
     },
+    isOpen: {
+        type: Boolean,
+        default: false,
+    },
 })
-defineEmits(['toggleSidebar'])
+defineEmits(['close'])
 
 const activeItem = ref('home')
+const sidebarMobileRef = ref<HTMLElement | null>(null)
+
+const getCloseSidebar = async () => {
+    await nextTick()
+
+    if (sidebarMobileRef.value) {
+        sidebarMobileRef.value.focus()
+    }
+}
+
+watch(
+    () => props.isOpen,
+    () => {
+        if (props.isOpen && props.isMobile) {
+            getCloseSidebar()
+        }
+    },
+)
 </script>

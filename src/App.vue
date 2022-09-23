@@ -9,10 +9,8 @@ const layout = computed(() => LayoutDefault)
 </script>
 
 <template>
-    <div>
-        <component :is="layout">
-            <TheCategories />
-            <TheVideos />
-        </component>
-    </div>
+    <component :is="layout">
+        <TheCategories />
+        <TheVideos />
+    </component>
 </template>

@@ -17,14 +17,24 @@
         leave-from-class="translate-x-0"
         leave-to-class="-translate-x-full"
     >
-        <TheSidebar v-show="isOpen" id="sidebar-mobile" :is-mobile="true" @toggle-sidebar="isOpen = false" />
+        <TheSidebar
+            id="sidebar-mobile"
+            :is-open="isOpen"
+            :is-mobile="true"
+            @close="$emit('close')"
+        />
     </Transition>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import AppShadow from './AppShadow.vue'
 import TheSidebar from './TheSidebar.vue'
 
-const isOpen = ref(true)
+defineProps({
+    isOpen: {
+        type: Boolean,
+        default: false,
+    },
+})
+defineEmits(['close'])
 </script>

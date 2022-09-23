@@ -7,6 +7,7 @@
             <div id="left" class="flex shrink-0 items-center justify-between">
                 <button
                     class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg focus:bg-black/10"
+                    @click="$emit('toggleSidebar')"
                 >
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </button>
@@ -45,4 +46,6 @@ import TheDropdownSettings from './TheDropdownSettings.vue'
 import LogoMain from './LogoMain.vue'
 import TheSearch from './TheSearch.vue'
 import ButtonLogin from './ButtonLogin.vue'
+
+defineEmits(['toggleSidebar'])
 </script>
