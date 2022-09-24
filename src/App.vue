@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import LayoutDefault from '@/layouts/LayoutDefault.vue'
 
-import TheCategories from './components/TheCategories.vue'
-import TheVideos from './components/TheVideos.vue'
-import LayoutDefault from './layouts/LayoutDefault.vue'
+const route = useRoute()
 
-const layout = computed(() => LayoutDefault)
+const layout = computed(() => route.meta.layout ?? LayoutDefault)
 </script>
 
 <template>
     <component :is="layout">
-        <TheCategories />
-        <TheVideos />
+        <RouterView />
     </component>
 </template>

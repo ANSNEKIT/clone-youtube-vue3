@@ -17,12 +17,7 @@
         leave-from-class="translate-x-0"
         leave-to-class="-translate-x-full"
     >
-        <TheSidebar
-            id="sidebar-mobile"
-            :is-open="isOpen"
-            :is-mobile="true"
-            @close="$emit('close')"
-        />
+        <TheSidebar id="sidebar-mobile" :is-mobile-open="isOpen" @close="$emit('close')" />
     </Transition>
 </template>
 

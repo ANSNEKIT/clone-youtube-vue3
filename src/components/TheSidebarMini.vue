@@ -2,7 +2,7 @@
     <aside
         id="sidebar-mini"
         class="w-[72px] pt-[56px] fixed top-0 z-[8] min-h-screen h-full overflow-hidden bg-white"
-        :class="{ 'md:block': isOpen, '!hidden': !isOpen }"
+        :class="{ 'md:block': sidebarState === 'compact', '!hidden': sidebarState === 'normal' }"
     >
         <div id="aside-container" class="mt-1 h-full">
             <section class="">
@@ -56,7 +56,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import IconHomeSolid from './icons/IconHomeSolid.vue'
 import IconHome from './icons/IconHome.vue'
 import IconCompassSolid from './icons/IconCompassSolid.vue'
@@ -71,12 +72,8 @@ import IconHistorySolid from './icons/IconHistorySolid.vue'
 import IconHistory from './icons/IconHistory.vue'
 import SidebarMiniItem from './SidebarMiniItem.vue'
 
-defineProps({
-    isOpen: {
-        type: Boolean,
-        default: false,
-    },
-})
+const store = useStore()
+const sidebarState = computed(() => store.state.sidebarState)
 
 const activeItem = ref('home')
 </script>

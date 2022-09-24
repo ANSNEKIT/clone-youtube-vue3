@@ -1,5 +1,11 @@
 <template>
-    <main class="md:ml-[72px] xl:ml-[240px] mt-[128px] px-10 3esm:px-0 4esm:px-6 pb-6">
+    <main
+        class="mt-[128px] px-10 3esm:px-0 4esm:px-6 pb-6"
+        :class="{
+            'md:ml-[72px]': sidebarState === 'compact',
+            'xl:ml-[240px]': sidebarState === 'normal',
+        }"
+    >
         <div
             class="bg-gray-50 min-h-screen 3sm:max-w-none 4esm:max-w-[670px] xl:!max-w-[1500px] 3xl:!max-w-[1840px] mx-auto overflow-x-hidden"
         >
@@ -61,10 +67,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 import IconDown from './icons/IconDown.vue'
 import IconShortsColorized from './icons/IconShortsColorized.vue'
 import VideoItem from './VideoItem.vue'
 import VideoShortItem from './VideoShortItem.vue'
+
+const store = useStore()
+const sidebarState = computed(() => store.state.sidebarState)
 
 const getRandomId = (length: number) => {
     let result = ''

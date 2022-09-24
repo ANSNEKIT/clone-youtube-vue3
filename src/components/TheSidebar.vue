@@ -3,17 +3,17 @@
         ref="sidebarMobileRef"
         class="w-[240px] max-h-screen h-full fixed top-0 overflow-hidden bg-white outline-none"
         :class="{
-            'pt-[56px] z-[8]': !isMobile,
-            'z-30': isMobile,
-            'xl:block': isOpen,
-            '!hidden': !isOpen,
+            'pt-[56px] z-[8]': !isMobileOpen,
+            '!block z-30': isMobileOpen,
+            'xl:block': sidebarState === 'normal',
+            hidden: sidebarState === 'compact',
         }"
         tabindex="-1"
         @keydown.esc="$emit('close')"
     >
         <div id="aside-container" class="h-full overflow-x-hidden overflow-y-auto">
             <div
-                v-if="isMobile"
+                v-if="isMobileOpen"
                 class="w-[240px] h-[56px] pl-4 sticky top-0 flex items-center bg-white"
             >
                 <button
@@ -218,7 +218,8 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
+import { useStore } from 'vuex'
 import IconHome from './icons/IconHome.vue'
 import IconHomeSolid from './icons/IconHomeSolid.vue'
 import IconCompass from './icons/IconCompass.vue'
@@ -255,16 +256,15 @@ import SidebarSection from './SidebarSection.vue'
 import TheFooter from './TheFooter.vue'
 
 const props = defineProps({
-    isMobile: {
-        type: Boolean,
-        default: false,
-    },
-    isOpen: {
+    isMobileOpen: {
         type: Boolean,
         default: false,
     },
 })
 defineEmits(['close'])
+
+const store = useStore()
+const sidebarState = computed(() => store.state.sidebarState)
 
 const activeItem = ref('home')
 const sidebarMobileRef = ref<HTMLElement | null>(null)
@@ -278,9 +278,9 @@ const getCloseSidebar = async () => {
 }
 
 watch(
-    () => props.isOpen,
+    () => sidebarState.value,
     () => {
-        if (props.isOpen && props.isMobile) {
+        if (sidebarState.value === 'compact' && props.isMobileOpen) {
             getCloseSidebar()
         }
     },

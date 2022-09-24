@@ -1,6 +1,10 @@
 <template>
     <section
-        class="md:ml-[72px] xl:ml-[240px] h-[56px] w-full fixed top-[56px] z-[7] bg-white bg-opacity-95"
+        class="h-[56px] w-full fixed top-[56px] z-[7] bg-white bg-opacity-95"
+        :class="{
+            'md:ml-[72px]': sidebarState === 'compact',
+            'xl:ml-[240px]': sidebarState === 'normal',
+        }"
     >
         <div class="border-y border-y-black/10 relative overflow-hidden whitespace-nowrap">
             <div class="h-full absolute z-10 left-0 top-0 flex">
@@ -43,10 +47,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import IconArrowRight from './icons/IconArrowRight.vue'
 import IconArrowLeft from './icons/IconArrowLeft.vue'
 import CategotyItem from './CategotyItem.vue'
+
+const store = useStore()
+const sidebarState = computed(() => store.state.sidebarState)
 
 const activeItemIndex = ref(0)
 const categories = [

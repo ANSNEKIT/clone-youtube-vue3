@@ -1,8 +1,8 @@
 <template>
     <div id="layout-default">
         <TheHeader @toggle-sidebar="toggleSidebar" />
-        <TheSidebar :is-open="sidebarState === 'normal'" />
-        <TheSidebarMini :is-open="sidebarState === 'compact'" />
+        <TheSidebar />
+        <TheSidebarMini />
         <TheSidebarMobile :is-open="isOpenSidebarMobile" @close="isOpenSidebarMobile = false" />
 
         <slot />
@@ -10,26 +10,29 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 
 import TheHeader from '../components/TheHeader.vue'
 import TheSidebarMini from '../components/TheSidebarMini.vue'
 import TheSidebarMobile from '../components/TheSidebarMobile.vue'
 import TheSidebar from '../components/TheSidebar.vue'
+import { useStore } from 'vuex'
 
 defineEmits(['toggleMobileSidebar', 'close'])
 
+const store = useStore()
+const sidebarState = computed(() => store.state.sidebarState)
+
 const isOpenSidebarMobile = ref(false)
-const sidebarState = ref<'normal' | 'compact' | null>(null)
 const md = 768
 const xl = 1280
 
 const getSidebarState = () => {
     if (window.innerWidth >= md && window.innerWidth < xl) {
-        sidebarState.value = 'compact'
+        store.commit('setSidebarState', 'compact')
     }
     if (window.innerWidth >= xl) {
-        sidebarState.value = 'normal'
+        store.commit('setSidebarState', 'normal')
     }
 }
 const throttle = (cb: (...args: any[]) => void, timeout: number) => {
@@ -60,7 +63,8 @@ const toggleSidebar = () => {
     const browserWidth = window.innerWidth
 
     if (browserWidth >= xl) {
-        sidebarState.value = sidebarState.value === 'normal' ? 'compact' : 'normal'
+        const sidebarNewState = sidebarState.value === 'normal' ? 'compact' : 'normal'
+        store.commit('setSidebarState', sidebarNewState)
     } else {
         isOpenSidebarMobile.value = true
     }
