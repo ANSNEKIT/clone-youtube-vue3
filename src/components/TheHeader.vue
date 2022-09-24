@@ -5,12 +5,10 @@
             class="px-2 sm:px-[16px] h-full w-full flex items-center justify-between"
         >
             <div id="left" class="flex shrink-0 items-center justify-between">
-                <button
-                    class="w-[40px] h-[40px] p-2 mr-0.5 rounded-full active:shadow-lg focus:bg-black/10"
-                    @click="$emit('toggleSidebar')"
-                >
+                <AppButton class="mr-0.5" @click="$emit('toggleSidebar')">
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
-                </button>
+                </AppButton>
+
                 <LogoMain />
             </div>
             <div
@@ -19,19 +17,13 @@
             >
                 <TheSearch />
 
-                <button
-                    class="ml-2 p-2 w-[40px] h-[40px] flex items-center justify-center rounded-full xl:bg-black/5 focus:bg-black/10"
-                >
+                <AppButton class="ml-2 xl:bg-black/5">
                     <IconMicrophone class="w-[24px] h-[24px] text-black" />
-                </button>
+                </AppButton>
             </div>
             <div id="right" class="min-w-max sm:min-w-[225px] flex items-center justify-end">
-                <button
-                    class="mr-2 w-[40px] h-[40px] relative group flex items-center justify-center rounded-full active:bg-neutral-50 active:border active:border-gray-200 focus:bg-black/10"
-                >
-                    <IconMore class="w-[24px] h-[24px] text-[#030303]" />
-                    <TheDropdownSettings class="" />
-                </button>
+                <TheDropdownSettings />
+
                 <ButtonLogin />
             </div>
         </div>
@@ -41,11 +33,11 @@
 <script setup lang="ts">
 import IconBar from './icons/IconBar.vue'
 import IconMicrophone from './icons/IconMicrophone.vue'
-import IconMore from './icons/IconMore.vue'
 import TheDropdownSettings from './TheDropdownSettings.vue'
 import LogoMain from './LogoMain.vue'
 import TheSearch from './TheSearch.vue'
 import ButtonLogin from './ButtonLogin.vue'
+import AppButton from './AppButton.vue'
 
 defineEmits(['toggleSidebar'])
 </script>

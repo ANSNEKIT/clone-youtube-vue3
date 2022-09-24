@@ -33,6 +33,7 @@ const getSidebarState = () => {
     }
     if (window.innerWidth >= xl) {
         store.commit('setSidebarState', 'normal')
+        isOpenSidebarMobile.value = false
     }
 }
 const throttle = (cb: (...args: any[]) => void, timeout: number) => {
