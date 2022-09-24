@@ -278,7 +278,7 @@ const getCloseSidebar = async () => {
 }
 
 watch(
-    () => sidebarState.value,
+    () => props.isMobileOpen,
     () => {
         if (sidebarState.value === 'compact' && props.isMobileOpen) {
             getCloseSidebar()

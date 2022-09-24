@@ -7,7 +7,7 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
     >
-        <AppShadow v-show="isOpen" />
+        <AppShadow v-show="isOpen" @click="$emit('close')" />
     </Transition>
     <Transition
         enter-active-class="transition ease-in-out duration-200 transform"

@@ -1,7 +1,7 @@
 <template>
     <aside
         id="sidebar-mini"
-        class="w-[72px] pt-[56px] fixed top-0 z-[8] min-h-screen h-full overflow-hidden bg-white"
+        class="hidden w-[72px] pt-[56px] fixed top-0 z-[8] min-h-screen h-full overflow-hidden bg-white"
         :class="{ 'md:block': sidebarState === 'compact', '!hidden': sidebarState === 'normal' }"
     >
         <div id="aside-container" class="mt-1 h-full">
