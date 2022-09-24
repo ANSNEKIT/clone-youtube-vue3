@@ -27,90 +27,25 @@
 
             <SidebarSection>
                 <ul class="">
-                    <SidebarItem name="Главная" :is-active="activeItem === 'home'">
-                        <IconHomeSolid
-                            v-if="activeItem === 'home'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconHome v-else width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="Навигатор" :is-active="activeItem === 'navigator'">
-                        <IconCompassSolid
-                            v-if="activeItem === 'navigator'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconCompass
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
-                    <SidebarItem name="Shorts" :is-active="activeItem === 'shorts'">
-                        <IconShortsSolid
-                            v-if="activeItem === 'shorts'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconShorts
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
-                    <SidebarItem name="Подписки" :is-active="activeItem === 'subscribe'">
-                        <IconSubscribeSolid
-                            v-if="activeItem === 'subscribe'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconSubscribe
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
+                    <SidebarItem
+                        v-for="(item, index) in mainNavList.slice(0, 4)"
+                        :key="index"
+                        :name="item.name"
+                        :icon="item.icon"
+                        :is-active="item.isActive"
+                    />
                 </ul>
             </SidebarSection>
 
             <SidebarSection>
                 <ul>
-                    <SidebarItem name="Библиотека" :is-active="activeItem === 'library'">
-                        <IconLibrarySolid
-                            v-if="activeItem === 'library'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconLibrary
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
-                    <SidebarItem name="История" :is-active="activeItem === 'history'">
-                        <IconHistorySolid
-                            v-if="activeItem === 'history'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconHistory
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
+                    <SidebarItem
+                        v-for="(item, index) in mainNavList.slice(-2)"
+                        :key="index"
+                        :name="item.name"
+                        :icon="item.icon"
+                        :is-active="item.isActive"
+                    />
                 </ul>
             </SidebarSection>
 
@@ -124,91 +59,43 @@
 
             <SidebarSection title="Навигатор">
                 <ul>
-                    <SidebarItem name="Фильмы" :is-active="activeItem === 'films'">
-                        <IconFilmSolid
-                            v-if="activeItem === 'films'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconFilm v-else width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="Видеоигры" :is-active="activeItem === 'games'">
-                        <IconGameSolid
-                            v-if="activeItem === 'games'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconGame v-else width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="Трансляции" :is-active="activeItem === 'streams'">
-                        <IconTranslationSolid
-                            v-if="activeItem === 'streams'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconTranslation
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
-                    <SidebarItem name="Спорт" :is-active="activeItem === 'sports'">
-                        <IconSportSolid
-                            v-if="activeItem === 'sports'"
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6"
-                        />
-                        <IconSport
-                            v-else
-                            width="24"
-                            height="24"
-                            class="w-6.5 h-6.5 mr-6 stroke-1"
-                        />
-                    </SidebarItem>
+                    <SidebarItem
+                        v-for="(item, index) in navigatorList"
+                        :key="index"
+                        :name="item.name"
+                        :icon="item.icon"
+                        :is-active="item.isActive"
+                    />
                 </ul>
             </SidebarSection>
 
             <SidebarSection>
                 <ul>
-                    <SidebarItem name="Каталог каналов">
-                        <IconPlus width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
+                    <SidebarItem name="Каталог каналов" :icon="IconPlus" />
                 </ul>
             </SidebarSection>
 
             <SidebarSection title="Другие возможности">
                 <ul>
-                    <SidebarItem name="YouTube Music">
-                        <IconUMusic width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="YouTube Детям">
-                        <IconUKids width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="YouTube TV">
-                        <IconUTV width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
+                    <SidebarItem
+                        v-for="(item, index) in moreList"
+                        :key="index"
+                        :name="item.name"
+                        :icon="item.icon"
+                        :is-active="item.isActive"
+                    />
                 </ul>
             </SidebarSection>
 
             <SidebarSection>
                 <ul>
-                    <SidebarItem name="Настройки">
-                        <IconSettings width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="Жалобы">
-                        <IconFlag width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="Справка">
-                        <IconAbout width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
-                    <SidebarItem name="Отправить отзыв">
-                        <IconFeedback width="24" height="24" class="w-6.5 h-6.5 mr-6 stroke-1" />
-                    </SidebarItem>
+                    <SidebarItem
+                        v-for="(item, index) in settingsList"
+                        :key="index"
+                        :name="item.name"
+                        :icon="item.icon"
+                        :is-active="item.isActive"
+                    />
                 </ul>
             </SidebarSection>
 
@@ -263,10 +150,125 @@ const props = defineProps({
 })
 defineEmits(['close'])
 
+watch(
+    () => props.isMobileOpen,
+    () => {
+        if (sidebarState.value === 'compact' && props.isMobileOpen) {
+            getCloseSidebar()
+        }
+    },
+)
+
+const sidebarNames = {
+    home: 'home',
+    navigator: 'navigator',
+    shorts: 'shorts',
+    subscribes: 'subscribes',
+    library: 'library',
+    history: 'history',
+    films: 'films',
+    games: 'games',
+    streams: 'streams',
+    sports: 'sports',
+}
+const activeItem = ref(sidebarNames.home)
+const mainNavList = [
+    {
+        name: 'Главная',
+        icon: activeItem.value === sidebarNames.home ? IconHomeSolid : IconHome,
+        isActive: activeItem.value === sidebarNames.home,
+    },
+    {
+        name: 'Навигатор',
+        icon: activeItem.value === sidebarNames.navigator ? IconCompassSolid : IconCompass,
+        isActive: activeItem.value === sidebarNames.navigator,
+    },
+    {
+        name: 'Shorts',
+        icon: activeItem.value === sidebarNames.shorts ? IconShortsSolid : IconShorts,
+        isActive: activeItem.value === sidebarNames.shorts,
+    },
+    {
+        name: 'Подписки',
+        icon: activeItem.value === sidebarNames.subscribes ? IconSubscribeSolid : IconSubscribe,
+        isActive: activeItem.value === sidebarNames.subscribes,
+    },
+    {
+        name: 'Библиотека',
+        icon: activeItem.value === sidebarNames.library ? IconLibrarySolid : IconLibrary,
+        isActive: activeItem.value === sidebarNames.library,
+    },
+    {
+        name: 'История',
+        icon: activeItem.value === sidebarNames.history ? IconHistorySolid : IconHistory,
+        isActive: activeItem.value === sidebarNames.history,
+    },
+]
+const navigatorList = [
+    {
+        name: 'Фильмы',
+        icon: activeItem.value === sidebarNames.films ? IconFilmSolid : IconFilm,
+        isActive: activeItem.value === sidebarNames.films,
+    },
+    {
+        name: 'Видеоигры',
+        icon: activeItem.value === sidebarNames.games ? IconGameSolid : IconGame,
+        isActive: activeItem.value === sidebarNames.games,
+    },
+    {
+        name: 'Трансляции',
+        icon: activeItem.value === sidebarNames.streams ? IconTranslationSolid : IconTranslation,
+        isActive: activeItem.value === sidebarNames.streams,
+    },
+    {
+        name: 'Спорт',
+        icon: activeItem.value === sidebarNames.sports ? IconSportSolid : IconSport,
+        isActive: activeItem.value === sidebarNames.sports,
+    },
+]
+const moreList = [
+    {
+        name: 'YouTube Music',
+        icon: IconUMusic,
+        isActive: false,
+    },
+    {
+        name: 'YouTube Детям',
+        icon: IconUKids,
+        isActive: false,
+    },
+    {
+        name: 'YouTube TV',
+        icon: IconUTV,
+        isActive: false,
+    },
+]
+const settingsList = [
+    {
+        name: 'Настройки',
+        icon: IconSettings,
+        isActive: false,
+    },
+    {
+        name: 'Жалобы',
+        icon: IconFlag,
+        isActive: false,
+    },
+    {
+        name: 'Справка',
+        icon: IconAbout,
+        isActive: false,
+    },
+    {
+        name: 'Отправить отзыв',
+        icon: IconFeedback,
+        isActive: false,
+    },
+]
+
 const store = useStore()
 const sidebarState = computed(() => store.state.sidebarState)
 
-const activeItem = ref('home')
 const sidebarMobileRef = ref<HTMLElement | null>(null)
 
 const getCloseSidebar = async () => {
@@ -276,13 +278,4 @@ const getCloseSidebar = async () => {
         sidebarMobileRef.value.focus()
     }
 }
-
-watch(
-    () => props.isMobileOpen,
-    () => {
-        if (sidebarState.value === 'compact' && props.isMobileOpen) {
-            getCloseSidebar()
-        }
-    },
-)
 </script>

@@ -5,61 +5,36 @@
         <div class="w-[300px] max-w-[300px] max-h-[428px]">
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
-                    <DropdownSettingsItem label="Личные данные на YouTube">
-                        <IconPerson width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
+                    <DropdownSettingsItem label="Личные данные на YouTube" :icon="IconPerson" />
                 </ul>
             </section>
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
                     <DropdownSettingsItem
-                        :is-arrow-right="true"
-                        label="Тема:"
-                        label-value="как на устройстве"
-                    >
-                        <IconMoon width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
-                    <DropdownSettingsItem
-                        :is-arrow-right="true"
-                        label="Язык:"
-                        label-value="Русский"
-                    >
-                        <IconLang width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
-                    <DropdownSettingsItem
-                        :is-arrow-right="true"
-                        label="Безопасный режим:"
-                        label-value="откл"
-                    >
-                        <IconSecurity width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
-                    <DropdownSettingsItem
-                        :is-arrow-right="true"
-                        label="Страна:"
-                        label-value="Россия"
-                    >
-                        <IconErth width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
-                    <DropdownSettingsItem label="Быстрые клавиши">
-                        <IconTia width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
+                        v-for="(item, index) in moreItems"
+                        :key="index"
+                        :is-arrow-right="item.isArrowRight"
+                        :icon="item.icon"
+                        :label="item.label"
+                        :label-value="item.labelValue"
+                    />
                 </ul>
             </section>
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
-                    <DropdownSettingsItem label="Настройки">
-                        <IconSettings width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
+                    <DropdownSettingsItem label="Настройки" :icon="IconSettings" />
                 </ul>
             </section>
             <section class="py-2 border-b border-b-black/10">
                 <ul class="">
-                    <DropdownSettingsItem label="Справка">
-                        <IconAbout width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
-                    <DropdownSettingsItem label="Отзыв">
-                        <IconFeedback width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
-                    </DropdownSettingsItem>
+                    <DropdownSettingsItem
+                        v-for="(item, index) in additionItems"
+                        :key="index"
+                        :is-arrow-right="item.isArrowRight"
+                        :icon="item.icon"
+                        :label="item.label"
+                        :label-value="item.labelValue"
+                    />
                 </ul>
             </section>
         </div>
@@ -77,4 +52,51 @@ import IconSettings from './icons/IconSettings.vue'
 import IconAbout from './icons/IconAbout.vue'
 import IconFeedback from './icons/IconFeedback.vue'
 import DropdownSettingsItem from './DropdownSettingsItem.vue'
+
+const moreItems = [
+    {
+        isArrowRight: true,
+        icon: IconMoon,
+        label: 'Тема:',
+        labelValue: 'как на устройстве',
+    },
+    {
+        isArrowRight: true,
+        icon: IconLang,
+        label: 'Язык:',
+        labelValue: 'Русский',
+    },
+    {
+        isArrowRight: true,
+        icon: IconSecurity,
+        label: 'Безопасный режим:',
+        labelValue: 'откл',
+    },
+    {
+        isArrowRight: true,
+        icon: IconErth,
+        label: 'Страна:',
+        labelValue: 'Россия',
+    },
+    {
+        isArrowRight: false,
+        icon: IconTia,
+        label: 'Быстрые клавиши',
+        labelValue: '',
+    },
+]
+const additionItems = [
+    {
+        isArrowRight: false,
+        icon: IconAbout,
+        label: 'Справка',
+        labelValue: '',
+    },
+    {
+        isArrowRight: false,
+        icon: IconFeedback,
+        label: 'Отзыв',
+        labelValue: '',
+    },
+]
 </script>

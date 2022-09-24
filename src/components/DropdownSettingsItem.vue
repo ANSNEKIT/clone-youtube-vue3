@@ -1,10 +1,10 @@
 <template>
     <li class="">
         <a
-            href="#"
+            :href="link"
             class="h-[40px] flex items-center px-4 text-base hover:bg-neutral-100 active:bg-neutral-300"
         >
-            <slot />
+            <component :is="icon" width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
 
             <div class="flex flex-1">
                 <span class="overflow-hidden overflow-ellipsis whitespace-nowrap">{{ label }}</span>
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import IconArrowRight from './icons/IconArrowRight.vue'
+
 defineProps({
     label: {
         type: String,
@@ -32,6 +33,14 @@ defineProps({
     isArrowRight: {
         type: Boolean,
         default: false,
+    },
+    icon: {
+        type: Object,
+        default: () => ({}),
+    },
+    link: {
+        type: String,
+        default: '#',
     },
 })
 </script>

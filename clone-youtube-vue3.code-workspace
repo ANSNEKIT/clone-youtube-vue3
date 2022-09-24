@@ -5,7 +5,7 @@
         }
     ],
     "settings": {
-        "workbench.colorTheme": "Cobalt2",
+        "workbench.colorTheme": "Bearded Theme Monokai Reversed",
         "editor.formatOnSave": true
     }
 }

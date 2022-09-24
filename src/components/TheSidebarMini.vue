@@ -7,48 +7,13 @@
         <div id="aside-container" class="mt-1 h-full">
             <section class="">
                 <ul class="">
-                    <SidebarMiniItem name="Главная" :is-active="activeItem === 'home'">
-                        <IconHomeSolid
-                            v-if="activeItem === 'home'"
-                            class="w-[24px] h-[24px] mb-1.5"
-                        />
-                        <IconHome v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
-                    </SidebarMiniItem>
-                    <SidebarMiniItem name="Навигатор" :is-active="activeItem === 'navigator'">
-                        <IconCompassSolid
-                            v-if="activeItem === 'navigator'"
-                            class="w-[24px] h-[24px] mb-1.5"
-                        />
-                        <IconCompass v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
-                    </SidebarMiniItem>
-                    <SidebarMiniItem name="Shorts" :is-active="activeItem === 'shorts'">
-                        <IconShortsSolid
-                            v-if="activeItem === 'shorts'"
-                            class="w-[24px] h-[24px] mb-1.5"
-                        />
-                        <IconShorts v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
-                    </SidebarMiniItem>
-                    <SidebarMiniItem name="Подписки" :is-active="activeItem === 'subscribes'">
-                        <IconSubscribeSolid
-                            v-if="activeItem === 'subscribes'"
-                            class="w-[24px] h-[24px] mb-1.5"
-                        />
-                        <IconSubscribe v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
-                    </SidebarMiniItem>
-                    <SidebarMiniItem name="Библиотека" :is-active="activeItem === 'library'">
-                        <IconLibrarySolid
-                            v-if="activeItem === 'library'"
-                            class="w-[24px] h-[24px] mb-1.5"
-                        />
-                        <IconLibrary v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
-                    </SidebarMiniItem>
-                    <SidebarMiniItem name="История" :is-active="activeItem === 'history'">
-                        <IconHistorySolid
-                            v-if="activeItem === 'history'"
-                            class="w-[24px] h-[24px] mb-1.5"
-                        />
-                        <IconHistory v-else class="w-[24px] h-[24px] mb-1.5 stroke-1" />
-                    </SidebarMiniItem>
+                    <SidebarMiniItem
+                        v-for="(item, index) in items"
+                        :key="index"
+                        :name="item.name"
+                        :is-active="item.isActive"
+                        :icon="item.icon"
+                    />
                 </ul>
             </section>
         </div>
@@ -75,5 +40,46 @@ import SidebarMiniItem from './SidebarMiniItem.vue'
 const store = useStore()
 const sidebarState = computed(() => store.state.sidebarState)
 
-const activeItem = ref('home')
+const sidebarNames = {
+    home: 'home',
+    navigator: 'navigator',
+    shorts: 'shorts',
+    subscribes: 'subscribes',
+    library: 'library',
+    history: 'history',
+}
+
+const activeItem = ref(sidebarNames.home)
+const items = [
+    {
+        name: 'Главная',
+        icon: activeItem.value === sidebarNames.home ? IconHomeSolid : IconHome,
+        isActive: activeItem.value === sidebarNames.home,
+    },
+    {
+        name: 'Навигатор',
+        icon: activeItem.value === sidebarNames.navigator ? IconCompassSolid : IconCompass,
+        isActive: activeItem.value === sidebarNames.navigator,
+    },
+    {
+        name: 'Shorts',
+        icon: activeItem.value === sidebarNames.shorts ? IconShortsSolid : IconShorts,
+        isActive: activeItem.value === sidebarNames.shorts,
+    },
+    {
+        name: 'Подписки',
+        icon: activeItem.value === sidebarNames.subscribes ? IconSubscribeSolid : IconSubscribe,
+        isActive: activeItem.value === sidebarNames.subscribes,
+    },
+    {
+        name: 'Библиотека',
+        icon: activeItem.value === sidebarNames.library ? IconLibrarySolid : IconLibrary,
+        isActive: activeItem.value === sidebarNames.library,
+    },
+    {
+        name: 'История',
+        icon: activeItem.value === sidebarNames.history ? IconHistorySolid : IconHistory,
+        isActive: activeItem.value === sidebarNames.history,
+    },
+]
 </script>

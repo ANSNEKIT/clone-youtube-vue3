@@ -30,7 +30,7 @@
                     class="mr-2 w-[40px] h-[40px] relative group flex items-center justify-center rounded-full active:bg-neutral-50 active:border active:border-gray-200 focus:bg-black/10"
                 >
                     <IconMore class="w-[24px] h-[24px] text-[#030303]" />
-                    <TheDropdownSettings class="hidden" />
+                    <TheDropdownSettings class="" />
                 </button>
                 <ButtonLogin />
             </div>
