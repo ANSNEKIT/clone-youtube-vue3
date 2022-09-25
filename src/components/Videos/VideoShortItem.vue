@@ -38,7 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import IconMore from './icons/IconMore.vue'
+import IconMore from '@/components/icons/IconMore.vue'
+
 const props = defineProps({
     id: {
         type: Number,

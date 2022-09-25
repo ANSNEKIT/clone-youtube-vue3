@@ -49,8 +49,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import IconArrowRight from './icons/IconArrowRight.vue'
-import IconArrowLeft from './icons/IconArrowLeft.vue'
+import IconArrowRight from '@/components/icons/IconArrowRight.vue'
+import IconArrowLeft from '@/components/icons/IconArrowLeft.vue'
 import CategotyItem from './CategotyItem.vue'
 
 const store = useStore()

@@ -6,6 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import TheCategories from '@/components/TheCategories.vue'
-import TheVideos from '@/components/TheVideos.vue'
+import TheCategories from '@/components/Categories/TheCategories.vue'
+import TheVideos from '@/components/Videos/TheVideos.vue'
 </script>

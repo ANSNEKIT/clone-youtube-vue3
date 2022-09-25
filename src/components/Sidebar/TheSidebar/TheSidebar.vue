@@ -22,7 +22,7 @@
                 >
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </button>
-                <LogoMain />
+                <AppLogo />
             </div>
 
             <SidebarSection>
@@ -54,7 +54,7 @@
                     Вы сможете ставить отметки "Нравится", писать комментарии и подписываться на
                     каналы.
                 </p>
-                <ButtonLogin class="mt-3" />
+                <AppButtonLogin class="mt-3" />
             </SidebarSection>
 
             <SidebarSection title="Навигатор">
@@ -99,7 +99,7 @@
                 </ul>
             </SidebarSection>
 
-            <TheFooter />
+            <SidebarFooter />
         </div>
     </aside>
 </template>
@@ -107,40 +107,40 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { useStore } from 'vuex'
-import IconHome from './icons/IconHome.vue'
-import IconHomeSolid from './icons/IconHomeSolid.vue'
-import IconCompass from './icons/IconCompass.vue'
-import IconCompassSolid from './icons/IconCompassSolid.vue'
-import IconShorts from './icons/IconShorts.vue'
-import IconShortsSolid from './icons/IconShortsSolid.vue'
-import IconSubscribe from './icons/IconSubscribe.vue'
-import IconSubscribeSolid from './icons/IconSubscribeSolid.vue'
-import IconLibrarySolid from './icons/IconLibrarySolid.vue'
-import IconLibrary from './icons/IconLibrary.vue'
-import IconHistory from './icons/IconHistory.vue'
-import IconHistorySolid from './icons/IconHistorySolid.vue'
-import IconFilm from './icons/IconFilm.vue'
-import IconFilmSolid from './icons/IconFilmSolid.vue'
-import IconGameSolid from './icons/IconGameSolid.vue'
-import IconGame from './icons/IconGame.vue'
-import IconTranslationSolid from './icons/IconTranslationSolid.vue'
-import IconTranslation from './icons/IconTranslation.vue'
-import IconSportSolid from './icons/IconSportSolid.vue'
-import IconSport from './icons/IconSport.vue'
-import IconPlus from './icons/IconPlus.vue'
-import IconUMusic from './icons/IconUMusic.vue'
-import IconUKids from './icons/IconUKids.vue'
-import IconUTV from './icons/IconUTV.vue'
-import IconSettings from './icons/IconSettings.vue'
-import IconFlag from './icons/IconFlag.vue'
-import IconAbout from './icons/IconAbout.vue'
-import IconFeedback from './icons/IconFeedback.vue'
-import IconBar from './icons/IconBar.vue'
-import LogoMain from './LogoMain.vue'
-import ButtonLogin from './ButtonLogin.vue'
+import IconHome from '@/components/icons/IconHome.vue'
+import IconHomeSolid from '@/components/icons/IconHomeSolid.vue'
+import IconCompass from '@/components/icons/IconCompass.vue'
+import IconCompassSolid from '@/components/icons/IconCompassSolid.vue'
+import IconShorts from '@/components/icons/IconShorts.vue'
+import IconShortsSolid from '@/components/icons/IconShortsSolid.vue'
+import IconSubscribe from '@/components/icons/IconSubscribe.vue'
+import IconSubscribeSolid from '@/components/icons/IconSubscribeSolid.vue'
+import IconLibrarySolid from '@/components/icons/IconLibrarySolid.vue'
+import IconLibrary from '@/components/icons/IconLibrary.vue'
+import IconHistory from '@/components/icons/IconHistory.vue'
+import IconHistorySolid from '@/components/icons/IconHistorySolid.vue'
+import IconFilm from '@/components/icons/IconFilm.vue'
+import IconFilmSolid from '@/components/icons/IconFilmSolid.vue'
+import IconGameSolid from '@/components/icons/IconGameSolid.vue'
+import IconGame from '@/components/icons/IconGame.vue'
+import IconTranslationSolid from '@/components/icons/IconTranslationSolid.vue'
+import IconTranslation from '@/components/icons/IconTranslation.vue'
+import IconSportSolid from '@/components/icons/IconSportSolid.vue'
+import IconSport from '@/components/icons/IconSport.vue'
+import IconPlus from '@/components/icons/IconPlus.vue'
+import IconUMusic from '@/components/icons/IconUMusic.vue'
+import IconUKids from '@/components/icons/IconUKids.vue'
+import IconUTV from '@/components/icons/IconUTV.vue'
+import IconSettings from '@/components/icons/IconSettings.vue'
+import IconFlag from '@/components/icons/IconFlag.vue'
+import IconAbout from '@/components/icons/IconAbout.vue'
+import IconFeedback from '@/components/icons/IconFeedback.vue'
+import IconBar from '@/components/icons/IconBar.vue'
+import AppLogo from '@/components/base/AppLogo.vue'
+import AppButtonLogin from '@/components/base/AppButtonLogin.vue'
 import SidebarItem from './SidebarItem.vue'
 import SidebarSection from './SidebarSection.vue'
-import TheFooter from './TheFooter.vue'
+import SidebarFooter from './SidebarFooter.vue'
 
 const props = defineProps({
     isMobileOpen: {

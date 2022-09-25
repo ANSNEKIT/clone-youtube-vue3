@@ -59,21 +59,17 @@
                 </div>
             </div>
         </div>
-        <div class="absolute -top-1 -right-3">
-            <button
-                class="flex items-center justify-center rounded-full w-[40px] h-[40px] active:bg-black/10 active:border active:border-gray-200 opacity-0 focus:opacity-100 focus:bg-black/10"
-            >
-                <IconMore class="w-[24px] h-[24px]" />
-            </button>
+        <div class="absolute top-0.5 -right-3">
+            <VideoItemDetailsDropdown />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import IconCheck from './icons/IconCheck.vue'
-import IconTranslation from './icons/IconTranslation.vue'
-import IconMore from './icons/IconMore.vue'
+import IconCheck from '@/components/icons/IconCheck.vue'
+import IconTranslation from '@/components/icons/IconTranslation.vue'
+import VideoItemDetailsDropdown from './VideoItemDetailsDropdown.vue'
 
 const props = defineProps({
     id: {

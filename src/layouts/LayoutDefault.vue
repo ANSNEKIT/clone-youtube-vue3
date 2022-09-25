@@ -11,12 +11,11 @@
 
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
-
-import TheHeader from '../components/TheHeader.vue'
-import TheSidebarMini from '../components/TheSidebarMini.vue'
-import TheSidebarMobile from '../components/TheSidebarMobile.vue'
-import TheSidebar from '../components/TheSidebar.vue'
 import { useStore } from 'vuex'
+import TheHeader from '@/components/Header/TheHeader.vue'
+import TheSidebarMini from '@/components/Sidebar/TheSidebarMini/TheSidebarMini.vue'
+import TheSidebarMobile from '@/components/Sidebar/TheSidebarMobile/TheSidebarMobile.vue'
+import TheSidebar from '@/components/Sidebar/TheSidebar/TheSidebar.vue'
 
 defineEmits(['toggleMobileSidebar', 'close'])
 

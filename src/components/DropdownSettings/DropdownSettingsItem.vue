@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import IconArrowRight from './icons/IconArrowRight.vue'
+import IconArrowRight from '@/components/icons/IconArrowRight.vue'
 
 defineProps({
     label: {

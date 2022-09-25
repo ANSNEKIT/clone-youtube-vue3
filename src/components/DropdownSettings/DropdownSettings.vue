@@ -70,18 +70,18 @@
 
 <script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from 'vue'
-import IconPerson from './icons/IconPerson.vue'
-import IconMoon from './icons/IconMoon.vue'
-import IconLang from './icons/IconLang.vue'
-import IconSecurity from './icons/IconSecurity.vue'
-import IconErth from './icons/IconErth.vue'
-import IconTia from './icons/IconTia.vue'
-import IconSettings from './icons/IconSettings.vue'
-import IconAbout from './icons/IconAbout.vue'
-import IconFeedback from './icons/IconFeedback.vue'
-import DropdownSettingsItem from './DropdownSettingsItem.vue'
-import AppButton from './AppButton.vue'
-import IconMore from './icons/IconMore.vue'
+import IconPerson from '@/components/icons/IconPerson.vue'
+import IconMoon from '@/components/icons/IconMoon.vue'
+import IconLang from '@/components/icons/IconLang.vue'
+import IconSecurity from '@/components/icons/IconSecurity.vue'
+import IconErth from '@/components/icons/IconErth.vue'
+import IconTia from '@/components/icons/IconTia.vue'
+import IconSettings from '@/components/icons/IconSettings.vue'
+import IconAbout from '@/components/icons/IconAbout.vue'
+import IconFeedback from '@/components/icons/IconFeedback.vue'
+import DropdownSettingsItem from '@/components/DropdownSettings/DropdownSettingsItem.vue'
+import AppButton from '@/components/base/AppButton.vue'
+import IconMore from '@/components/icons/IconMore.vue'
 
 const moreItems = [
     {

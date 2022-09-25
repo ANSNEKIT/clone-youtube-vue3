@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import AppShadow from './AppShadow.vue'
-import TheSidebar from './TheSidebar.vue'
+import AppShadow from '@/components/base/AppShadow.vue'
+import TheSidebar from '@/components/Sidebar/TheSidebar/TheSidebar.vue'
 
 defineProps({
     isOpen: {

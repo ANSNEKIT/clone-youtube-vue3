@@ -8,5 +8,5 @@
 </template>
 
 <script setup lang="ts">
-import IconSearch from './icons/IconSearch.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
 </script>

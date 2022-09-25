@@ -69,8 +69,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import IconDown from './icons/IconDown.vue'
-import IconShortsColorized from './icons/IconShortsColorized.vue'
+import IconDown from '@/components/icons/IconDown.vue'
+import IconShortsColorized from '@/components/icons/IconShortsColorized.vue'
 import VideoItem from './VideoItem.vue'
 import VideoShortItem from './VideoShortItem.vue'
 
