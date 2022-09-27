@@ -7,10 +7,10 @@
         }"
     >
         <div
-            class="bg-gray-50 min-h-screen 3sm:max-w-none 4esm:max-w-[670px] xl:!max-w-[1500px] 3xl:!max-w-[1840px] mx-auto overflow-x-hidden"
+            class="bg-gray-50 min-h-screen 3sm:max-w-none 4esm:max-w-[670px] xl:!max-w-[1500px] 3xl:!max-w-[1840px] mx-auto overflow-hidden"
         >
             <section
-                class="pb-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center"
+                class="px-3 pb-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center"
             >
                 <VideoItem
                     v-for="(video, index) in firstSection"
@@ -37,7 +37,7 @@
             </section>
             <section
                 id="mini"
-                class="py-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center border-t-4 border-t-black/10"
+                class="pt-10 px-3 pb-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center border-t-4 border-t-black/10"
             >
                 <VideoItem v-for="i in 4" :id="i" :key="i" />
             </section>
@@ -58,7 +58,7 @@
                 </button>
             </section>
             <section
-                class="py-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center border-t-4 border-t-black/10"
+                class="pt-10 px-3 pb-10 grid grid-cols-1 3esm:grid-cols-2 3sm:!grid-cols-3 2lg:!grid-cols-4 3xl:!grid-cols-5 4xl:!grid-cols-6 gap-x-4 gap-y-10 justify-items-center border-t-4 border-t-black/10"
             >
                 <VideoItem v-for="i in 24" :id="i" :key="i" />
             </section>

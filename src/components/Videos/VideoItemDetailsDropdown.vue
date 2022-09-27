@@ -1,8 +1,9 @@
 <template>
     <div ref="parentDropdownRef" class="relative">
         <AppButton
-            class="opacity-100 active:bg-neutral-50 active:border active:border-gray-200 focus:opacity-100"
-            @click="isOpen = !isOpen"
+            class="group-hover:opacity-100 active:bg-neutral-50 active:border active:border-gray-200 focus:opacity-100"
+            :class="{ '!opacity-100': isOpen, 'opacity-0': !isOpen }"
+            @click="toggleDropdown"
         >
             <IconMore class="w-[24px] h-[24px] text-[#030303]" />
         </AppButton>
@@ -19,7 +20,8 @@
                 v-show="isOpen"
                 ref="dropdownRef"
                 tabindex="-1"
-                class="absolute z-10 top-11 -left-1 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
+                class="absolute z-10 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
+                :class="positionClasses"
                 @keydown.esc="isOpen = false"
             >
                 <div class="w-max max-w-[300px] max-h-[428px]">
@@ -63,6 +65,101 @@ const detailMenuList = [
 const isOpen = ref(false)
 const parentDropdownRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
+const positionClasses = ref<(string | void)[]>([])
+
+const toggleDropdown = (evt: MouseEvent) => {
+    isOpen.value = !isOpen.value
+
+    if (isOpen.value) {
+        nextTick(() => {
+            positionClasses.value = getPositionClasses(evt)
+        })
+    }
+}
+
+const getPositionClasses = (evt: MouseEvent) => {
+    return [getTopClass(evt), getLeftClass(evt), getRightClass(evt), getBottomClass(evt)]
+}
+
+const getTopClass = (evt: MouseEvent) => {
+    const currentTarget = evt.currentTarget as HTMLButtonElement
+    const clickCoordY = evt.clientY
+    const buttonHeight = currentTarget?.offsetHeight
+    const dropdownHeight = dropdownRef.value?.offsetHeight ?? 0
+
+    if (window.innerHeight - clickCoordY < dropdownHeight) {
+        return 'top-auto'
+    }
+
+    if (window.innerHeight - clickCoordY < dropdownHeight + buttonHeight) {
+        return 'top-0'
+    }
+
+    return 'top-12'
+}
+const getLeftClass = (evt: MouseEvent) => {
+    const currentTarget = evt.currentTarget as HTMLButtonElement
+    const clickCoordX = evt.clientX
+    const clickCoordY = evt.clientY
+    const dropdownWidth = dropdownRef.value?.offsetWidth ?? 223
+    const dropdownHeight = dropdownRef.value?.offsetHeight ?? 0
+    const buttonHeight = currentTarget?.offsetHeight
+
+    if (window.innerWidth - clickCoordX < dropdownWidth) {
+        console.log('111 window.innerWidth - clickCoordX', window.innerWidth - clickCoordX)
+        console.log('111 dropdownWidth', dropdownWidth)
+
+        return 'left-auto'
+    }
+
+    if (window.innerHeight - clickCoordY > dropdownHeight + buttonHeight) {
+        console.log('222 window.innerHeight - clickCoordY', window.innerHeight - clickCoordY)
+        console.log('222 dropdownHeight + buttonHeight', dropdownHeight + buttonHeight)
+
+        return 'left-auto'
+    }
+
+    if (window.innerHeight - clickCoordY < dropdownHeight) {
+        console.log('444')
+        return 'left-auto'
+    }
+
+    console.log('555')
+
+    return 'left-12'
+}
+const getRightClass = (evt: MouseEvent) => {
+    const currentTarget = evt.currentTarget as HTMLButtonElement
+    const clickCoordX = evt.clientX
+    const clickCoordY = evt.clientY
+    const dropdownWidth = dropdownRef.value?.offsetWidth ?? 223
+    const dropdownHeight = dropdownRef.value?.offsetHeight ?? 0
+    const buttonHeight = currentTarget?.offsetHeight
+
+    if (window.innerWidth - clickCoordX > dropdownWidth) {
+        return 'right-auto'
+    }
+
+    if (window.innerHeight - clickCoordY > dropdownHeight + buttonHeight) {
+        return 'right-0'
+    }
+
+    if (window.innerHeight - clickCoordY > dropdownHeight) {
+        return 'right-12'
+    }
+
+    return 'right-0'
+}
+const getBottomClass = (evt: MouseEvent) => {
+    const clickCoordY = evt.clientY
+    const dropdownHeight = dropdownRef.value?.offsetHeight ?? 0
+
+    if (window.innerHeight - clickCoordY < dropdownHeight) {
+        return 'bottom-12'
+    }
+
+    return 'bottom-auto'
+}
 
 const getFocusDropdown = async () => {
     await nextTick()
@@ -78,11 +175,15 @@ onMounted(() => {
             isOpen.value = false
         }
     })
+
+    // document.body.addEventListener('scroll', () => (isOpen.value = false))
 })
 
 watch(
     () => isOpen.value,
     () => {
+        // document.body.classList.toggle('overflow-hidden')
+
         if (isOpen.value) {
             getFocusDropdown()
         }
