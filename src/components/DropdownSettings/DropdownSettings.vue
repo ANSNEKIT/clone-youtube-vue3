@@ -3,7 +3,8 @@
         <AppButton
             ref="btnDropdown"
             tabindex="0"
-            class="mr-2 active:bg-neutral-50 active:border active:border-gray-200"
+            tooltip="Настройки"
+            :btn-class="'ml-2 active:bg-neutral-50 active:border active:border-gray-200'"
             @click="isOpen = !isOpen"
         >
             <IconMore class="w-[24px] h-[24px] text-[#030303]" />
@@ -21,7 +22,7 @@
                 v-show="isOpen"
                 ref="dropdownRef"
                 tabindex="-1"
-                class="fixed z-10 top-14 right-36 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
+                class="fixed z-20 top-14 right-36 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
                 @keydown.esc="isOpen = false"
             >
                 <div class="w-[300px] max-w-[300px] max-h-[428px]">

@@ -11,7 +11,7 @@
         </a>
         <div class="pr-7 w-full">
             <div :class="{ 'outline outline-2 rounded-sm': hasFocusTitle }">
-                <h3 class="mb-2 text-base 2xl:text-lg font-medium leading-6 line-clamp-2">
+                <h3 class="mb-1 text-base 2xl:text-lg font-medium leading-5 line-clamp-2">
                     <a
                         href="#"
                         class="outline-none"
@@ -23,19 +23,26 @@
                 </h3>
             </div>
             <div>
-                <p
-                    class="flex items-center text-[#606060] hover:text-gray-900 text-sm 2xl:text-base overflow-hidden text-ellipsis whitespace-nowrap"
+                <div
+                    class="flex text-[#606060] hover:text-gray-900 text-sm 2xl:text-base"
                 >
                     <a
                         href="#"
                         class="border rounded-sm border-transparent focus:border-black outline-none"
                     >
-                        В Рейтинге
+                        <AppTooltip :tooltip="channelName" :top="true">
+                            <span class="overflow-hidden text-ellipsis whitespace-nowrap">{{
+                                channelName
+                            }}</span>
+                        </AppTooltip>
                     </a>
-                    <span class="opacity-60 pl-1">
-                        <IconCheck class="w-4 h-4" />
-                    </span>
-                </p>
+
+                    <AppTooltip tooltip="Подтверждено" :top="true">
+                        <div class="opacity-60 pl-1">
+                            <IconCheck class="w-4 h-4" />
+                        </div>
+                    </AppTooltip>
+                </div>
                 <div v-if="!isStream">
                     <p class="text-[#606060] text-sm 2xl:text-base cursor-pointer">
                         <span class="inline-block after:content-['•'] after:m-1"
@@ -70,6 +77,7 @@ import { ref } from 'vue'
 import IconCheck from '@/components/icons/IconCheck.vue'
 import IconTranslation from '@/components/icons/IconTranslation.vue'
 import VideoItemDetailsDropdown from './VideoItemDetailsDropdown.vue'
+import AppTooltip from '@/components/base/AppTooltip.vue'
 
 const props = defineProps({
     id: {
@@ -84,4 +92,5 @@ const props = defineProps({
 
 const userProfileImg = `https://source.unsplash.com/random/36x36?sig=${props.id}`
 const hasFocusTitle = ref(false)
+const channelName = 'В рейтинге'
 </script>

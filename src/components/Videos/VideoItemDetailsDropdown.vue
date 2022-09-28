@@ -20,7 +20,7 @@
                 v-show="isOpen"
                 ref="dropdownRef"
                 tabindex="-1"
-                class="absolute z-10 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
+                class="absolute z-20 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
                 :class="positionClasses"
                 @keydown.esc="isOpen = false"
             >

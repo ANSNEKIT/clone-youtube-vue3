@@ -17,14 +17,23 @@
             >
                 <TheSearch />
 
-                <AppButton class="ml-2 xl:bg-black/5">
+                <AppButton tooltip="Голосовой поиск" :btn-class="'ml-2 hidden sm:flex bg-black/5'">
                     <IconMicrophone class="w-[24px] h-[24px] text-black" />
                 </AppButton>
             </div>
             <div id="right" class="min-w-max sm:min-w-[225px] flex items-center justify-end">
+                <AppButton
+                    tooltip="Введите запрос"
+                    class="whitespace-normal"
+                    :btn-class="'sm:hidden'"
+                >
+                    <IconSearch class="w-[24px] h-[24px]" />
+                </AppButton>
+                <AppButton tooltip="Голосовой поиск" :btn-class="'ml-2 sm:hidden'">
+                    <IconMicrophone class="w-[24px] h-[24px] text-black" />
+                </AppButton>
                 <DropdownSettings />
-
-                <AppButtonLogin />
+                <AppButtonLogin class="ml-2" />
             </div>
         </div>
     </header>
@@ -38,6 +47,7 @@ import TheSearch from '@/components/Search/TheSearch.vue'
 import AppButtonLogin from '@/components/base/AppButtonLogin.vue'
 import AppButton from '@/components/base/AppButton.vue'
 import DropdownSettings from '@/components/DropdownSettings/DropdownSettings.vue'
+import IconSearch from '../icons/IconSearch.vue'
 
 defineEmits(['toggleSidebar'])
 </script>
