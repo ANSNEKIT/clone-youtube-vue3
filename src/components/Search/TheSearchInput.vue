@@ -1,11 +1,12 @@
 <template>
-    <form class="hidden sm:flex sm:flex-1 sm:items-center ml-9">
+    <form class="flex flex-1 items-center">
         <div
             id="search-wrap"
+            ref="searchWrap"
             class="px-[6px] py-[2px] h-[40px] flex flex-1 items-center border rounded-l text-black bg-white border-gray-300"
-            :class="{ 'border border-[#1c62b9] shadow-inner': hasFocus }"
+            :class="{ 'border border-[#1c62b9] shadow-inner ml-0': hasFocus, 'ml-9': !hasFocus }"
         >
-            <div class="hidden px-2.5" :class="{ '!flex items-center': hasFocus }">
+            <div class="hidden px-2" :class="{ '!flex items-center': hasFocus }">
                 <IconSearch class="w-[20px] h-[20px]" />
             </div>
             <input
@@ -47,9 +48,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import IconClose from '@/components/icons/IconClose.vue'
 
 const hasFocus = ref(false)
+const searchInput = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+    const sm = 640
+    if (window.innerWidth < sm) {
+        searchInput.value?.focus()
+    }
+})
 </script>

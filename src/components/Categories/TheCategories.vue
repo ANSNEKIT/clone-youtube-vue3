@@ -1,12 +1,14 @@
 <template>
     <section
-        class="h-[56px] w-full fixed top-[56px] z-[7] bg-white bg-opacity-95"
+        class="h-[56px] z-[7]"
         :class="{
             'md:ml-[72px]': sidebarState === 'compact',
             'xl:ml-[240px]': sidebarState === 'normal',
         }"
     >
-        <div class="border-y border-y-black/10 relative overflow-hidden whitespace-nowrap">
+        <div
+            class="border-y border-y-black/10 relative bg-white bg-opacity-95 overflow-hidden whitespace-nowrap"
+        >
             <div class="h-full absolute z-10 left-0 top-0 flex">
                 <div class="w-[56px] flex items-center justify-center bg-white">
                     <button class="w-[32px] h-[32px] p-2 rounded-full active:bg-black/10">

@@ -1,5 +1,5 @@
 <template>
-    <div id="search" class="hidden group sm:flex flex-1 justify-end">
+    <div id="search" class="group flex flex-1 justify-end">
         <TheSearchInput />
         <TheSearchButton tooltip="Введите запрос" />
     </div>

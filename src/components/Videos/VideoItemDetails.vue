@@ -23,9 +23,7 @@
                 </h3>
             </div>
             <div>
-                <div
-                    class="flex text-[#606060] hover:text-gray-900 text-sm 2xl:text-base"
-                >
+                <div class="flex text-[#606060] hover:text-gray-900 text-sm 2xl:text-base">
                     <a
                         href="#"
                         class="border rounded-sm border-transparent focus:border-black outline-none"

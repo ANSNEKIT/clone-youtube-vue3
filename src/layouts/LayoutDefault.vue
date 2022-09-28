@@ -1,6 +1,10 @@
 <template>
     <div id="layout-default">
-        <TheHeader @toggle-sidebar="toggleSidebar" />
+        <div class="fixed top-0 left-0 w-full z-30">
+            <TheHeader @toggle-sidebar="toggleSidebar" />
+            <TheCategories />
+        </div>
+
         <TheSidebar />
         <TheSidebarMini />
         <TheSidebarMobile :is-open="isOpenSidebarMobile" @close="isOpenSidebarMobile = false" />
@@ -10,12 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 import TheHeader from '@/components/Header/TheHeader.vue'
 import TheSidebarMini from '@/components/Sidebar/TheSidebarMini/TheSidebarMini.vue'
 import TheSidebarMobile from '@/components/Sidebar/TheSidebarMobile/TheSidebarMobile.vue'
 import TheSidebar from '@/components/Sidebar/TheSidebar/TheSidebar.vue'
+import TheCategories from '@/components/Categories/TheCategories.vue'
+import { throttle } from '@/use/throttle'
 
 defineEmits(['toggleMobileSidebar', 'close'])
 
@@ -26,6 +32,13 @@ const isOpenSidebarMobile = ref(false)
 const md = 768
 const xl = 1280
 
+onMounted(() => {
+    getSidebarState()
+
+    window.addEventListener('resize', throttledGetSidebarState)
+})
+onUnmounted(() => window.removeEventListener('resize', throttledGetSidebarState))
+
 const getSidebarState = () => {
     if (window.innerWidth >= md && window.innerWidth < xl) {
         store.commit('setSidebarState', 'compact')
@@ -35,29 +48,7 @@ const getSidebarState = () => {
         isOpenSidebarMobile.value = false
     }
 }
-const throttle = (cb: (...args: any[]) => void, timeout: number) => {
-    let timer: null | ReturnType<typeof setTimeout> = null
-
-    return function (...args: any[]) {
-        if (timer) return
-
-        timer = setTimeout(() => {
-            cb(...args)
-
-            if (timer) {
-                clearTimeout(timer)
-            }
-            timer = null
-        }, timeout)
-    }
-}
-
 const throttledGetSidebarState = throttle(getSidebarState, 50)
-onMounted(() => {
-    getSidebarState()
-})
-
-addEventListener('resize', throttledGetSidebarState)
 
 const toggleSidebar = () => {
     const browserWidth = window.innerWidth

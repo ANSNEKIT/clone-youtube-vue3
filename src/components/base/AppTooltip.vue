@@ -19,8 +19,8 @@
         >
             <div
                 v-show="tooltip && isShow"
-                class="p-2 absolute z-10 left-1/2 -translate-x-1/2 bg-neutral-600 opacity-80 rounded-sm text-white text-sm whitespace-nowrap"
-                :class="{ 'top-14': !top, 'bottom-10': top }"
+                class="p-2 absolute z-10 bg-neutral-600 opacity-80 rounded-sm text-white text-sm whitespace-nowrap"
+                :class="getPositionClasses"
             >
                 {{ tooltip }}
             </div>
@@ -29,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-defineProps({
+const props = defineProps({
     tooltip: {
         type: String,
         default: '',
@@ -40,7 +40,28 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    right: {
+        type: Boolean,
+        default: false,
+    },
+    left: {
+        type: Boolean,
+        default: false,
+    },
 })
 
 const isShow = ref(false)
+const getPositionClasses = computed(() => {
+    const topClasses = props.top ? 'bottom-10' : 'top-14'
+
+    if (props.right) {
+        return [topClasses, 'left-0']
+    }
+
+    if (props.left) {
+        return [topClasses, 'right-0']
+    }
+
+    return [topClasses, 'left-1/2', '-translate-x-1/2']
+})
 </script>
