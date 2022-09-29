@@ -1,6 +1,6 @@
 <template>
     <section
-        class="h-[56px] z-[7]"
+        class="fixed top-[56px] h-[56px] z-[7]"
         :class="{
             'md:ml-[72px]': sidebarState === 'compact',
             'xl:ml-[240px]': sidebarState === 'normal',

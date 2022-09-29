@@ -1,9 +1,6 @@
 <template>
     <div id="layout-default">
-        <div class="fixed top-0 left-0 w-full z-30">
-            <TheHeader @toggle-sidebar="toggleSidebar" />
-            <TheCategories />
-        </div>
+        <TheHeader @toggle-sidebar="toggleSidebar" />
 
         <TheSidebar />
         <TheSidebarMini />
@@ -20,7 +17,6 @@ import TheHeader from '@/components/Header/TheHeader.vue'
 import TheSidebarMini from '@/components/Sidebar/TheSidebarMini/TheSidebarMini.vue'
 import TheSidebarMobile from '@/components/Sidebar/TheSidebarMobile/TheSidebarMobile.vue'
 import TheSidebar from '@/components/Sidebar/TheSidebar/TheSidebar.vue'
-import TheCategories from '@/components/Categories/TheCategories.vue'
 import { throttle } from '@/use/throttle'
 
 defineEmits(['toggleMobileSidebar', 'close'])
