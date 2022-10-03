@@ -33,6 +33,7 @@
 
 <script setup lang="ts">
 import DropdownSettingsHeader from './DropdownSettingsHeader.vue'
+import { useDropdownSubMenu } from '@/composables/dropdown'
 
 defineProps({
     title: {
@@ -44,9 +45,7 @@ defineProps({
         default: () => ({}),
     },
 })
-const emit = defineEmits(['close', 'selectOption'])
+const emitsSubmenu = defineEmits(['close', 'selectOption'])
 
-const onSelectedOption = (secure: { enabled: boolean; text: string }) => {
-    emit('selectOption', { name: 'secure', value: secure })
-}
+const { onSelectedOption } = useDropdownSubMenu('secure', emitsSubmenu)
 </script>

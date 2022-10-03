@@ -1,7 +1,6 @@
 <template>
     <div ref="parentDropdownRef" class="relative z-10">
         <AppButton
-            ref="btnDropdown"
             tabindex="0"
             tooltip="Настройки"
             :btn-class="'ml-2 active:bg-neutral-50 active:border active:border-gray-200'"
@@ -26,232 +25,48 @@
                 @keydown.esc="onClose"
             >
                 <component
-                    :is="menu"
+                    :is="getMenu"
                     v-if="selectedMenu !== null"
-                    :title="menuTitle"
-                    :selected-option="selectedOption"
+                    :title="getMenuTitle"
+                    :selected-option="getSelectedOption"
                     @select-option="onSelectOption"
                     @select-menu="onSelectMenu"
                     @close="onCloseSubMenu"
                 />
-                <DropdownSettingsMain v-else :menu-items="menuItems" @select-menu="onSelectMenu" />
+                <DropdownSettingsMain
+                    v-else
+                    :menu-items="getMainItems"
+                    @select-menu="onSelectMenu"
+                />
             </div>
         </Transition>
     </div>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch, computed, DefineComponent } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import AppButton from '@/components/base/AppButton.vue'
 import IconMore from '@/components/icons/IconMore.vue'
 import DropdownSettingsMain from '@/components/DropdownSettings/DropdownSettingsMain.vue'
-import DropdownSettingsMainAppearance from '@/components/DropdownSettings/DropdownSettingsMainAppearance.vue'
-import DropdownSettingsMainLanguage from '@/components/DropdownSettings/DropdownSettingsMainLanguage.vue'
-import DropdownSettingsMainCountry from '@/components/DropdownSettings/DropdownSettingsMainCountry.vue'
-import DropdownSettingsMainSecureMode from './DropdownSettingsMainSecureMode.vue'
-import IconPerson from '@/components/icons/IconPerson.vue'
-import IconMoon from '@/components/icons/IconMoon.vue'
-import IconLang from '@/components/icons/IconLang.vue'
-import IconSecurity from '@/components/icons/IconSecurity.vue'
-import IconErth from '@/components/icons/IconErth.vue'
-import IconTia from '@/components/icons/IconTia.vue'
-import IconSettings from '@/components/icons/IconSettings.vue'
-import IconAbout from '@/components/icons/IconAbout.vue'
-import IconFeedback from '@/components/icons/IconFeedback.vue'
+import { useDropdown } from '@/composables/dropdown'
 
-interface MenuComponentNames {
-    appearance: DefineComponent
-    lang: DefineComponent
-    country: DefineComponent
-    secure: DefineComponent
-}
-
-interface SelectedOption {
-    id: number
-    text: string
-}
-interface SelectedOptionSecure {
-    enabled: boolean
-    text: string
-}
-
-interface SelectedOptions {
-    appearance: SelectedOption
-    lang: SelectedOption
-    country: SelectedOption
-    secure: SelectedOptionSecure
-}
-
-interface MenuNames {
-    [key: string]: string
-}
-
-const isOpen = ref(false)
 const parentDropdownRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
-const btnDropdown = ref<HTMLElement | null>(null)
-const selectedMenu = ref<string | null>(null)
 
-const selectedOptions = ref({
-    appearance: {
-        id: 0,
-        text: 'как на устройстве',
-    },
-    lang: {
-        id: 0,
-        text: 'Русский',
-    },
-    country: {
-        id: 0,
-        text: 'Россия',
-    },
-    secure: {
-        enabled: false,
-        text: 'откл',
-    },
-})
-
-const menuItems = computed(() => [
-    {
-        isArrowRight: false,
-        icon: IconPerson,
-        label: 'Личные данные на YouTube',
-        labelValue: '',
-        id: 'personal',
-        withSubMenu: false,
-    },
-    {
-        isArrowRight: true,
-        icon: IconMoon,
-        label: 'Тема:',
-        labelValue: selectedOptions.value.appearance.text,
-        id: 'appearance',
-        withSubMenu: true,
-    },
-    {
-        isArrowRight: true,
-        icon: IconLang,
-        label: 'Язык:',
-        labelValue: selectedOptions.value.lang.text,
-        id: 'lang',
-        withSubMenu: true,
-    },
-    {
-        isArrowRight: true,
-        icon: IconSecurity,
-        label: 'Безопасный режим:',
-        labelValue: selectedOptions.value.secure.text,
-        id: 'secure',
-        withSubMenu: true,
-    },
-    {
-        isArrowRight: true,
-        icon: IconErth,
-        label: 'Страна:',
-        labelValue: selectedOptions.value.country.text,
-        id: 'country',
-        withSubMenu: true,
-    },
-    {
-        isArrowRight: false,
-        icon: IconTia,
-        label: 'Быстрые клавиши',
-        labelValue: '',
-        id: 'hotkeys',
-        withSubMenu: false,
-    },
-    {
-        isArrowRight: false,
-        icon: IconSettings,
-        label: 'Настройки',
-        labelValue: '',
-        id: 'settings',
-        withSubMenu: false,
-    },
-    {
-        isArrowRight: false,
-        icon: IconAbout,
-        label: 'Справка',
-        labelValue: '',
-        id: 'help',
-        withSubMenu: false,
-    },
-    {
-        isArrowRight: false,
-        icon: IconFeedback,
-        label: 'Отзыв',
-        labelValue: '',
-        id: 'feedback',
-        withSubMenu: false,
-    },
-])
-const menu = computed(() => {
-    const menuComponentNames = {
-        appearance: DropdownSettingsMainAppearance,
-        lang: DropdownSettingsMainLanguage,
-        country: DropdownSettingsMainCountry,
-        secure: DropdownSettingsMainSecureMode,
-    }
-    if (selectedMenu.value) {
-        return menuComponentNames[selectedMenu.value as keyof MenuComponentNames]
-    }
-
-    return null
-})
-const menuTitle = computed((): string => {
-    if (selectedMenu.value) {
-        const menuHeaderTitleNames: MenuNames = {
-            appearance: 'Тема',
-            lang: 'Выберите язык',
-            country: 'Выберите страну',
-            secure: 'Безопасный режим',
-        }
-
-        return menuHeaderTitleNames[selectedMenu.value as keyof MenuNames]
-    }
-    return ''
-})
-const selectedOption = computed(() => {
-    if (selectedMenu.value) {
-        return selectedOptions.value[selectedMenu.value as keyof SelectedOptions]
-    }
-    return {}
-})
-
-const onSelectMenu = (menuName: string) => {
-    selectedMenu.value = menuName
-
-    dropdownRef.value?.focus()
-}
-const onSelectOption = ({
-    name,
-    value,
-}: {
-    name: keyof SelectedOptions
-    value: SelectedOption & SelectedOptionSecure
-}) => {
-    selectedOptions.value[name] = value
-}
-const onClose = () => {
-    isOpen.value = false
-
-    setTimeout(() => onCloseSubMenu, 100)
-}
-const onCloseSubMenu = () => (selectedMenu.value = null)
-const open = () => {
-    isOpen.value = true
-}
-const onToggle = () => {
-    isOpen.value ? onClose() : open()
-}
-
-const getFocusDropdown = async () => {
-    await nextTick()
-
-    if (dropdownRef.value) {
-        dropdownRef.value?.focus()
-    }
-}
+const {
+    isOpen,
+    selectedMenu,
+    getMainItems,
+    getMenu,
+    getMenuTitle,
+    getSelectedOption,
+    onSelectMenu,
+    onSelectOption,
+    onClose,
+    onCloseSubMenu,
+    onToggle,
+    getFocusDropdown,
+} = useDropdown(dropdownRef)
 
 onMounted(() => {
     window.addEventListener('click', ({ target }: MouseEvent) => {

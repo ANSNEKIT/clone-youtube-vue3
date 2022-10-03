@@ -4,7 +4,7 @@
         <section class="py-2 border-b border-b-black/10">
             <ul class="">
                 <DropdownSettingsItem
-                    v-for="(lang, langId) in langs"
+                    v-for="(lang, langId) in dropdownItemsLang"
                     :key="langId"
                     :is-active="langId === selectedOption.id"
                     :label="lang"
@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import DropdownSettingsItem from '@/components/DropdownSettings/DropdownSettingsItem.vue'
 import DropdownSettingsHeader from '@/components/DropdownSettings/DropdownSettingsHeader.vue'
+import { useDropdownSubMenu } from '@/composables/dropdown'
 
 defineProps({
     title: {
@@ -29,11 +30,8 @@ defineProps({
         default: () => ({}),
     },
 })
-const emit = defineEmits(['close', 'selectOption'])
 
-const langs = ['Русский', 'Беларуская', 'Српски', 'English']
+const emitsSubmenu = defineEmits(['close', 'selectOption'])
 
-const onSelectedOption = (lang: { id: number; text: string }) => {
-    emit('selectOption', { name: 'lang', value: lang })
-}
+const { dropdownItemsLang, onSelectedOption } = useDropdownSubMenu('lang', emitsSubmenu)
 </script>

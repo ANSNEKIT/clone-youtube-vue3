@@ -40,17 +40,9 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue'
 import DropdownSettingsItem from '@/components/DropdownSettings/DropdownSettingsItem.vue'
-import { DefineComponent, PropType } from 'vue'
-
-interface DropdownItem {
-    isArrowRight: boolean
-    icon: DefineComponent
-    label: string
-    labelValue: string
-    id: string
-    withSubMenu: boolean
-}
+import { DropdownItem } from '@/types/dropdown'
 
 defineProps({
     menuItems: {

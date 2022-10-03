@@ -4,7 +4,7 @@
         <section class="py-2 border-b border-b-black/10">
             <ul class="">
                 <DropdownSettingsItem
-                    v-for="(country, countryId) in countries"
+                    v-for="(country, countryId) in dropdownItemsContry"
                     :key="countryId"
                     :is-active="countryId === selectedOption.id"
                     :label="country"
@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import DropdownSettingsItem from '@/components/DropdownSettings/DropdownSettingsItem.vue'
 import DropdownSettingsHeader from '@/components/DropdownSettings/DropdownSettingsHeader.vue'
+import { useDropdownSubMenu } from '@/composables/dropdown'
 
 defineProps({
     title: {
@@ -29,11 +30,8 @@ defineProps({
         default: () => ({}),
     },
 })
-const emit = defineEmits(['close', 'selectOption'])
 
-const countries = ['Россия', 'Украина', 'Белоруссия', 'Сербия', 'Казахстан', 'Молдавия']
+const emitsSubmenu = defineEmits(['close', 'selectOption'])
 
-const onSelectedOption = (country: { id: number; text: string }) => {
-    emit('selectOption', { name: 'country', value: country })
-}
+const { dropdownItemsContry, onSelectedOption } = useDropdownSubMenu('country', emitsSubmenu)
 </script>

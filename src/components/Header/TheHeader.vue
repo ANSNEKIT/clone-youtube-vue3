@@ -66,7 +66,7 @@ import AppButton from '@/components/base/AppButton.vue'
 import DropdownSettings from '@/components/DropdownSettings/DropdownSettings.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import TheSearchMobile from '@/components/Search/TheSearchMobile.vue'
-import { throttle } from '@/use/throttle'
+import { throttle } from '@/composables/throttle'
 
 defineEmits(['toggleSidebar'])
 

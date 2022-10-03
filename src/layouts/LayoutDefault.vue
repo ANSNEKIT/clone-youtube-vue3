@@ -17,7 +17,7 @@ import TheHeader from '@/components/Header/TheHeader.vue'
 import TheSidebarMini from '@/components/Sidebar/TheSidebarMini/TheSidebarMini.vue'
 import TheSidebarMobile from '@/components/Sidebar/TheSidebarMobile/TheSidebarMobile.vue'
 import TheSidebar from '@/components/Sidebar/TheSidebar/TheSidebar.vue'
-import { throttle } from '@/use/throttle'
+import { throttle } from '@/composables/throttle'
 
 defineEmits(['toggleMobileSidebar', 'close'])
 

@@ -7,7 +7,7 @@
             </p>
             <ul class="">
                 <DropdownSettingsItem
-                    v-for="(theme, themeId) in moreItems"
+                    v-for="(theme, themeId) in dropdownItemsAppearance"
                     :key="themeId"
                     :is-active="themeId === selectedOption.id"
                     :label="theme"
@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import DropdownSettingsItem from '@/components/DropdownSettings/DropdownSettingsItem.vue'
 import DropdownSettingsHeader from '@/components/DropdownSettings/DropdownSettingsHeader.vue'
+import { useDropdownSubMenu } from '@/composables/dropdown'
 
 defineProps({
     title: {
@@ -32,11 +33,7 @@ defineProps({
         default: () => ({}),
     },
 })
-const emit = defineEmits(['close', 'selectOption'])
+const emitsSubmenu = defineEmits(['close', 'selectOption'])
 
-const moreItems = ['Как на устройстве', 'Темная', 'Светлая']
-
-const onSelectedOption = (theme: { id: number; text: string }) => {
-    emit('selectOption', { name: 'appearance', value: theme })
-}
+const { dropdownItemsAppearance, onSelectedOption } = useDropdownSubMenu('appearance', emitsSubmenu)
 </script>
