@@ -37,7 +37,7 @@
 
                     <AppTooltip tooltip="Подтверждено" :top="true">
                         <div class="opacity-60 pl-1">
-                            <IconCheck class="w-4 h-4" />
+                            <IconCheckCircle class="w-4 h-4" />
                         </div>
                     </AppTooltip>
                 </div>
@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import IconCheck from '@/components/icons/IconCheck.vue'
+import IconCheckCircle from '@/components/icons/IconCheckCircle.vue'
 import IconTranslation from '@/components/icons/IconTranslation.vue'
 import VideoItemDetailsDropdown from './VideoItemDetailsDropdown.vue'
 import AppTooltip from '@/components/base/AppTooltip.vue'

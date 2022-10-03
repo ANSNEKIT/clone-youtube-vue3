@@ -1,11 +1,11 @@
 <template>
-    <div ref="parentDropdownRef" class="relative">
+    <div ref="parentDropdownRef" class="relative z-10">
         <AppButton
             ref="btnDropdown"
             tabindex="0"
             tooltip="Настройки"
             :btn-class="'ml-2 active:bg-neutral-50 active:border active:border-gray-200'"
-            @click="isOpen = !isOpen"
+            @click="onToggle"
         >
             <IconMore class="w-[24px] h-[24px] text-[#030303]" />
         </AppButton>
@@ -23,54 +23,32 @@
                 ref="dropdownRef"
                 tabindex="-1"
                 class="fixed z-20 top-14 right-36 bg-white border border-t-0 border-black/10 rounded-sm overflow-x-hidden overflow-y-auto focus:outline-none"
-                @keydown.esc="isOpen = false"
+                @keydown.esc="onClose"
             >
-                <div class="w-[300px] max-w-[300px] max-h-[428px]">
-                    <section class="py-2 border-b border-b-black/10">
-                        <ul class="">
-                            <DropdownSettingsItem
-                                label="Личные данные на YouTube"
-                                :icon="IconPerson"
-                            />
-                        </ul>
-                    </section>
-                    <section class="py-2 border-b border-b-black/10">
-                        <ul class="">
-                            <DropdownSettingsItem
-                                v-for="(item, index) in moreItems"
-                                :key="index"
-                                :is-arrow-right="item.isArrowRight"
-                                :icon="item.icon"
-                                :label="item.label"
-                                :label-value="item.labelValue"
-                            />
-                        </ul>
-                    </section>
-                    <section class="py-2 border-b border-b-black/10">
-                        <ul class="">
-                            <DropdownSettingsItem label="Настройки" :icon="IconSettings" />
-                        </ul>
-                    </section>
-                    <section class="py-2 border-b border-b-black/10">
-                        <ul class="">
-                            <DropdownSettingsItem
-                                v-for="(item, index) in additionItems"
-                                :key="index"
-                                :is-arrow-right="item.isArrowRight"
-                                :icon="item.icon"
-                                :label="item.label"
-                                :label-value="item.labelValue"
-                            />
-                        </ul>
-                    </section>
-                </div>
+                <component
+                    :is="menu"
+                    v-if="selectedMenu !== null"
+                    :title="menuTitle"
+                    :selected-option="selectedOption"
+                    @select-option="onSelectOption"
+                    @select-menu="onSelectMenu"
+                    @close="onCloseSubMenu"
+                />
+                <DropdownSettingsMain v-else :menu-items="menuItems" @select-menu="onSelectMenu" />
             </div>
         </Transition>
     </div>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { nextTick, onMounted, ref, watch, computed, DefineComponent } from 'vue'
+import AppButton from '@/components/base/AppButton.vue'
+import IconMore from '@/components/icons/IconMore.vue'
+import DropdownSettingsMain from '@/components/DropdownSettings/DropdownSettingsMain.vue'
+import DropdownSettingsMainAppearance from '@/components/DropdownSettings/DropdownSettingsMainAppearance.vue'
+import DropdownSettingsMainLanguage from '@/components/DropdownSettings/DropdownSettingsMainLanguage.vue'
+import DropdownSettingsMainCountry from '@/components/DropdownSettings/DropdownSettingsMainCountry.vue'
+import DropdownSettingsMainSecureMode from './DropdownSettingsMainSecureMode.vue'
 import IconPerson from '@/components/icons/IconPerson.vue'
 import IconMoon from '@/components/icons/IconMoon.vue'
 import IconLang from '@/components/icons/IconLang.vue'
@@ -80,61 +58,192 @@ import IconTia from '@/components/icons/IconTia.vue'
 import IconSettings from '@/components/icons/IconSettings.vue'
 import IconAbout from '@/components/icons/IconAbout.vue'
 import IconFeedback from '@/components/icons/IconFeedback.vue'
-import DropdownSettingsItem from '@/components/DropdownSettings/DropdownSettingsItem.vue'
-import AppButton from '@/components/base/AppButton.vue'
-import IconMore from '@/components/icons/IconMore.vue'
 
-const moreItems = [
+interface MenuComponentNames {
+    appearance: DefineComponent
+    lang: DefineComponent
+    country: DefineComponent
+    secure: DefineComponent
+}
+
+interface SelectedOption {
+    id: number
+    text: string
+}
+interface SelectedOptionSecure {
+    enabled: boolean
+    text: string
+}
+
+interface SelectedOptions {
+    appearance: SelectedOption
+    lang: SelectedOption
+    country: SelectedOption
+    secure: SelectedOptionSecure
+}
+
+interface MenuNames {
+    [key: string]: string
+}
+
+const isOpen = ref(false)
+const parentDropdownRef = ref<HTMLElement | null>(null)
+const dropdownRef = ref<HTMLElement | null>(null)
+const btnDropdown = ref<HTMLElement | null>(null)
+const selectedMenu = ref<string | null>(null)
+
+const selectedOptions = ref({
+    appearance: {
+        id: 0,
+        text: 'как на устройстве',
+    },
+    lang: {
+        id: 0,
+        text: 'Русский',
+    },
+    country: {
+        id: 0,
+        text: 'Россия',
+    },
+    secure: {
+        enabled: false,
+        text: 'откл',
+    },
+})
+
+const menuItems = computed(() => [
+    {
+        isArrowRight: false,
+        icon: IconPerson,
+        label: 'Личные данные на YouTube',
+        labelValue: '',
+        id: 'personal',
+        withSubMenu: false,
+    },
     {
         isArrowRight: true,
         icon: IconMoon,
         label: 'Тема:',
-        labelValue: 'как на устройстве',
+        labelValue: selectedOptions.value.appearance.text,
+        id: 'appearance',
+        withSubMenu: true,
     },
     {
         isArrowRight: true,
         icon: IconLang,
         label: 'Язык:',
-        labelValue: 'Русский',
+        labelValue: selectedOptions.value.lang.text,
+        id: 'lang',
+        withSubMenu: true,
     },
     {
         isArrowRight: true,
         icon: IconSecurity,
         label: 'Безопасный режим:',
-        labelValue: 'откл',
+        labelValue: selectedOptions.value.secure.text,
+        id: 'secure',
+        withSubMenu: true,
     },
     {
         isArrowRight: true,
         icon: IconErth,
         label: 'Страна:',
-        labelValue: 'Россия',
+        labelValue: selectedOptions.value.country.text,
+        id: 'country',
+        withSubMenu: true,
     },
     {
         isArrowRight: false,
         icon: IconTia,
         label: 'Быстрые клавиши',
         labelValue: '',
+        id: 'hotkeys',
+        withSubMenu: false,
     },
-]
-const additionItems = [
+    {
+        isArrowRight: false,
+        icon: IconSettings,
+        label: 'Настройки',
+        labelValue: '',
+        id: 'settings',
+        withSubMenu: false,
+    },
     {
         isArrowRight: false,
         icon: IconAbout,
         label: 'Справка',
         labelValue: '',
+        id: 'help',
+        withSubMenu: false,
     },
     {
         isArrowRight: false,
         icon: IconFeedback,
         label: 'Отзыв',
         labelValue: '',
+        id: 'feedback',
+        withSubMenu: false,
     },
-]
+])
+const menu = computed(() => {
+    const menuComponentNames = {
+        appearance: DropdownSettingsMainAppearance,
+        lang: DropdownSettingsMainLanguage,
+        country: DropdownSettingsMainCountry,
+        secure: DropdownSettingsMainSecureMode,
+    }
+    if (selectedMenu.value) {
+        return menuComponentNames[selectedMenu.value as keyof MenuComponentNames]
+    }
 
-const isOpen = ref(false)
-const parentDropdownRef = ref<HTMLElement | null>(null)
-const dropdownRef = ref<HTMLElement | null>(null)
-const btnDropdown = ref<HTMLElement | null>(null)
+    return null
+})
+const menuTitle = computed((): string => {
+    if (selectedMenu.value) {
+        const menuHeaderTitleNames: MenuNames = {
+            appearance: 'Тема',
+            lang: 'Выберите язык',
+            country: 'Выберите страну',
+            secure: 'Безопасный режим',
+        }
+
+        return menuHeaderTitleNames[selectedMenu.value as keyof MenuNames]
+    }
+    return ''
+})
+const selectedOption = computed(() => {
+    if (selectedMenu.value) {
+        return selectedOptions.value[selectedMenu.value as keyof SelectedOptions]
+    }
+    return {}
+})
+
+const onSelectMenu = (menuName: string) => {
+    selectedMenu.value = menuName
+
+    dropdownRef.value?.focus()
+}
+const onSelectOption = ({
+    name,
+    value,
+}: {
+    name: keyof SelectedOptions
+    value: SelectedOption & SelectedOptionSecure
+}) => {
+    selectedOptions.value[name] = value
+}
+const onClose = () => {
+    isOpen.value = false
+
+    setTimeout(() => onCloseSubMenu, 100)
+}
+const onCloseSubMenu = () => (selectedMenu.value = null)
+const open = () => {
+    isOpen.value = true
+}
+const onToggle = () => {
+    isOpen.value ? onClose() : open()
+}
 
 const getFocusDropdown = async () => {
     await nextTick()
@@ -147,7 +256,7 @@ const getFocusDropdown = async () => {
 onMounted(() => {
     window.addEventListener('click', ({ target }: MouseEvent) => {
         if (!parentDropdownRef.value?.contains(target as Node)) {
-            isOpen.value = false
+            onClose()
         }
     })
 })

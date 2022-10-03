@@ -106,25 +106,16 @@ const getLeftClass = (evt: MouseEvent) => {
     const buttonHeight = currentTarget?.offsetHeight
 
     if (window.innerWidth - clickCoordX < dropdownWidth) {
-        console.log('111 window.innerWidth - clickCoordX', window.innerWidth - clickCoordX)
-        console.log('111 dropdownWidth', dropdownWidth)
-
         return 'left-auto'
     }
 
     if (window.innerHeight - clickCoordY > dropdownHeight + buttonHeight) {
-        console.log('222 window.innerHeight - clickCoordY', window.innerHeight - clickCoordY)
-        console.log('222 dropdownHeight + buttonHeight', dropdownHeight + buttonHeight)
-
         return 'left-auto'
     }
 
     if (window.innerHeight - clickCoordY < dropdownHeight) {
-        console.log('444')
         return 'left-auto'
     }
-
-    console.log('555')
 
     return 'left-12'
 }

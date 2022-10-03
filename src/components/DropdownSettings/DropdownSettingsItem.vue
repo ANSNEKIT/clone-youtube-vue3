@@ -4,13 +4,22 @@
             :href="link"
             class="h-[40px] flex items-center px-4 text-base hover:bg-neutral-100 active:bg-neutral-300"
         >
-            <component :is="icon" width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
+            <component
+                :is="icon"
+                v-if="Object.keys(icon).length !== 0 && !isActive"
+                width="24"
+                height="24"
+                class="w-[24px] h-[24px] mr-[16px]"
+            />
 
-            <div class="flex flex-1">
-                <span class="overflow-hidden overflow-ellipsis whitespace-nowrap">{{ label }}</span>
-                <span class="pl-1 overflow-hidden overflow-ellipsis whitespace-nowrap text-base">{{
-                    labelValue
-                }}</span>
+            <IconCheck v-if="isActive" width="24" height="24" class="w-[24px] h-[24px] mr-[16px]" />
+
+            <div
+                class="flex flex-1 truncate"
+                :class="{ 'ml-[40px]': !isActive && Object.keys(icon).length === 0 }"
+            >
+                <span class="truncate">{{ label }}</span>
+                <span class="pl-1 truncate">{{ labelValue }}</span>
             </div>
 
             <IconArrowRight v-if="isArrowRight" width="24" height="24" class="w-[24px] h-[24px]" />
@@ -20,6 +29,7 @@
 
 <script setup lang="ts">
 import IconArrowRight from '@/components/icons/IconArrowRight.vue'
+import IconCheck from '@/components/icons/IconCheck.vue'
 
 defineProps({
     label: {
@@ -41,6 +51,10 @@ defineProps({
     link: {
         type: String,
         default: '#',
+    },
+    isActive: {
+        type: Boolean,
+        default: false,
     },
 })
 </script>
