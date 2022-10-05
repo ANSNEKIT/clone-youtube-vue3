@@ -1,4 +1,4 @@
-import { DefineComponent } from "vue"
+import { DefineComponent } from 'vue'
 
 type EventDrpodownSubmenu = (event: 'close' | 'selectOption', ...args: any[]) => void
 interface MenuComponentNames {
@@ -37,7 +37,7 @@ interface DropdownItem {
     withSubMenu: boolean
 }
 
-export {
+export type {
     EventDrpodownSubmenu,
     SelectedOption,
     SelectedOptionSecure,

@@ -1,19 +1,15 @@
+import { State, SidebarState } from '@/types/store'
 import { createStore } from 'vuex'
-
-export interface State {
-    sidebarState: 'normal' | 'compact' | null
-}
-type sidebarState = 'normal' | 'compact' | null
 
 const store = createStore<State>({
     state: {
         sidebarState: null,
+        searchQuery: '',
     },
     getters: {},
     mutations: {
-        setSidebarState: (state, payload: sidebarState) => {
-            state.sidebarState = payload
-        },
+        setSidebarState: (state, payload: SidebarState) => (state.sidebarState = payload),
+        setSearchQuery: (state, payload: string) => (state.searchQuery = payload),
     },
 })
 

@@ -21,17 +21,8 @@
                 class="flex sm:hidden"
                 @close-sidebar-mobile="isShowMobileSearch = false"
             />
-            <div
-                v-else
-                id="center"
-                class="w-full xl:w-[728px] ml-10 flex items-center justify-end xl:justify-between"
-            >
-                <TheSearch class="hidden sm:flex" />
+            <TheSearchMain v-else />
 
-                <AppButton tooltip="Голосовой поиск" :btn-class="'ml-2 hidden sm:flex bg-black/5'">
-                    <IconMicrophone class="w-[24px] h-[24px] text-black" />
-                </AppButton>
-            </div>
             <div
                 id="right"
                 class="min-w-max sm:min-w-[225px] flex items-center justify-end"
@@ -60,13 +51,13 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import IconBar from '@/components/icons/IconBar.vue'
 import IconMicrophone from '@/components/icons/IconMicrophone.vue'
 import AppLogo from '@/components/base/AppLogo.vue'
-import TheSearch from '@/components/Search/TheSearch.vue'
 import AppButtonLogin from '@/components/base/AppButtonLogin.vue'
 import AppButton from '@/components/base/AppButton.vue'
 import DropdownSettings from '@/components/DropdownSettings/DropdownSettings.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import TheSearchMobile from '@/components/Search/TheSearchMobile.vue'
 import { throttle } from '@/composables/throttle'
+import TheSearchMain from '@/components/Search/TheSearchMain.vue'
 
 defineEmits(['toggleSidebar'])
 
