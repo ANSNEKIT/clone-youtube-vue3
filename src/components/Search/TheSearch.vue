@@ -28,7 +28,7 @@
 import TheSearchInput from '@/components/Search/TheSearchInput.vue'
 import TheSearchButton from '@/components/Search/TheSearchButton.vue'
 import TheSearchResults from '@/components/Search/TheSearchResults.vue'
-import { ref, watch, onMounted, computed, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 import { Keyword } from '@/types/searchInput'
 
@@ -36,8 +36,7 @@ const store = useStore()
 
 const isShowResults = ref(false)
 const query = ref('')
-const searchQuery = computed(() => store.state.searchQuery)
-const activeQuery = ref<string | null>(null)
+const queryBuffer = ref<string | null>(null)
 const results = ref<Array<Keyword>>([])
 const keywords = [
     {
@@ -114,19 +113,19 @@ const keywords = [
 const activeSearchResultId = ref<number | null>(null)
 
 onMounted(() => {
-    window.addEventListener('click', handlerClick)
-
-    query.value = searchQuery.value
+    window.addEventListener('click', onClick)
 })
 
-onUnmounted(() => window.removeEventListener('click', handlerClick))
+onUnmounted(() => {
+    window.removeEventListener('click', onClick)
+})
 
 watch(
     () => query.value,
     () => store.commit('setSearchQuery', query.value),
 )
+const onClick = () => toggleShowResults(false)
 
-const handlerClick = () => toggleShowResults(false)
 const onResultClick = () => {
     if (activeSearchResultId.value !== null) {
         query.value = results.value[activeSearchResultId.value].keyword
@@ -137,7 +136,7 @@ const onResultClick = () => {
 }
 const updateQueryResults = () => {
     activeSearchResultId.value = null
-    activeQuery.value = query.value
+    queryBuffer.value = query.value
 
     if (query.value === '') {
         results.value = []
@@ -168,7 +167,7 @@ const updateQueryWithSearchResult = () => {
     if (activeSearchResultId.value !== null) {
         query.value = results.value[activeSearchResultId.value].keyword
     } else {
-        query.value = String(activeQuery.value)
+        query.value = String(queryBuffer.value)
     }
 }
 

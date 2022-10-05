@@ -59,10 +59,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import IconClose from '@/components/icons/IconClose.vue'
 import AppButton from '@/components/base/AppButton.vue'
+import { useStore } from 'vuex'
+import { State } from '@/types/store'
 
 const props = defineProps({
     query: {
@@ -75,6 +77,20 @@ const props = defineProps({
     },
 })
 const emit = defineEmits(['update:query', 'changeState', 'enter'])
+
+const { state } = useStore<State>()
+
+const isMobileSerchActive = computed(() => state.isMobileSerchActive)
+
+watch(
+    () => isMobileSerchActive.value,
+    async () => {
+        if (isMobileSerchActive.value) {
+            await nextTick()
+            searchInputRef.value?.focus()
+        }
+    },
+)
 
 const isActive = ref(false)
 const searchInputRef = ref<HTMLInputElement | null>(null)

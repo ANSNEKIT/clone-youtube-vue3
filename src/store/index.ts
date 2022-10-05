@@ -4,12 +4,12 @@ import { createStore } from 'vuex'
 const store = createStore<State>({
     state: {
         sidebarState: null,
-        searchQuery: '',
+        isMobileSerchActive: false,
     },
     getters: {},
     mutations: {
         setSidebarState: (state, payload: SidebarState) => (state.sidebarState = payload),
-        setSearchQuery: (state, payload: string) => (state.searchQuery = payload),
+        setMobileSerchActive: (state, payload: boolean) => (state.isMobileSerchActive = payload),
     },
 })
 

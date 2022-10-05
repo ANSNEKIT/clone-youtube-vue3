@@ -7,7 +7,7 @@
             <div
                 id="left"
                 class="flex shrink-0 items-center justify-between"
-                :class="{ 'opacity-0': isShowMobileSearch, 'opacity-100': !isShowMobileSearch }"
+                :class="{ 'opacity-0': isMobileSerchActive, 'opacity-100': !isMobileSerchActive }"
             >
                 <AppButton :btn-class="'mr-0.5'" @click="$emit('toggleSidebar')">
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
@@ -16,23 +16,22 @@
                 <AppLogo />
             </div>
 
-            <TheSearchMobile
-                v-if="isShowMobileSearch"
-                class="flex sm:hidden"
-                @close-sidebar-mobile="isShowMobileSearch = false"
+            <TheSearchWrapper
+                v-show="!isHiddenSearch"
+                :is-small-screen="isSmallScreen"
+                @close="onCloseMobileSearch"
             />
-            <TheSearchMain v-else />
 
             <div
                 id="right"
                 class="min-w-max sm:min-w-[225px] flex items-center justify-end"
-                :class="{ 'opacity-0': isShowMobileSearch, 'opacity-100': !isShowMobileSearch }"
+                :class="{ 'opacity-0': isMobileSerchActive, 'opacity-100': !isMobileSerchActive }"
             >
                 <AppButton
                     tooltip="Введите запрос"
                     class="whitespace-normal"
                     :btn-class="'sm:hidden'"
-                    @click.stop="isShowMobileSearch = true"
+                    @click.stop="onOpenMobileSearch"
                 >
                     <IconSearch class="w-[24px] h-[24px]" />
                 </AppButton>
@@ -47,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import IconBar from '@/components/icons/IconBar.vue'
 import IconMicrophone from '@/components/icons/IconMicrophone.vue'
 import AppLogo from '@/components/base/AppLogo.vue'
@@ -55,25 +54,37 @@ import AppButtonLogin from '@/components/base/AppButtonLogin.vue'
 import AppButton from '@/components/base/AppButton.vue'
 import DropdownSettings from '@/components/DropdownSettings/DropdownSettings.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
-import TheSearchMobile from '@/components/Search/TheSearchMobile.vue'
+import TheSearchWrapper from '@/components/Search/TheSearchWrapper.vue'
 import { throttle } from '@/composables/throttle'
-import TheSearchMain from '@/components/Search/TheSearchMain.vue'
+import { useStore } from 'vuex'
+import { State } from '@/types/store'
 
 defineEmits(['toggleSidebar'])
 
-const isShowMobileSearch = ref(false)
+const { state, commit } = useStore<State>()
+
+const isMobileSerchActive = computed(() => state.isMobileSerchActive)
+const isSmallScreen = ref(false)
+
+const isHiddenSearch = computed(() => !isMobileSerchActive.value && isSmallScreen.value)
 
 onMounted(() => {
     onResize()
     window.addEventListener('resize', throttledResize)
 })
-onUnmounted(() => window.addEventListener('resize', throttledResize))
+
+const onOpenMobileSearch = () => commit('setMobileSerchActive', true)
+const onCloseMobileSearch = () => commit('setMobileSerchActive', false)
 
 const onResize = () => {
     const sm = 640
-    if (window.innerWidth > sm) {
-        isShowMobileSearch.value = false
+    if (window.innerWidth < sm) {
+        isSmallScreen.value = true
+        return
     }
+
+    isSmallScreen.value = false
+    onCloseMobileSearch()
 }
 const throttledResize = throttle(onResize, 50)
 </script>
