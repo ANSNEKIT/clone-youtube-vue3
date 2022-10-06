@@ -50,7 +50,7 @@
                 v-show="query"
                 btn-class="ml-1 hover:bg-black/10 active:bg-black/20 focus:outline-2 focus:outline focus:bg-transparent focus:outline-offset-[-4px]"
                 aria-label="Очистить"
-                @click="onClear"
+                @click.stop="onClear"
             >
                 <IconClose class="w-[24px] h-[24px]" />
             </AppButton>
@@ -59,12 +59,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, watch } from 'vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import IconClose from '@/components/icons/IconClose.vue'
 import AppButton from '@/components/base/AppButton.vue'
 import { useStore } from 'vuex'
 import { State } from '@/types/store'
+import { useSearchInput } from '@/composables/search'
 
 const props = defineProps({
     query: {
@@ -79,8 +80,10 @@ const props = defineProps({
 const emit = defineEmits(['update:query', 'changeState', 'enter'])
 
 const { state } = useStore<State>()
-
 const isMobileSerchActive = computed(() => state.isMobileSerchActive)
+
+const { searchInputRef, isActive, iconTea, onInput, onClear, setState, onHandleEsc, onEnter } =
+    useSearchInput(props, emit)
 
 watch(
     () => isMobileSerchActive.value,
@@ -92,55 +95,12 @@ watch(
     },
 )
 
-const isActive = ref(false)
-const searchInputRef = ref<HTMLInputElement | null>(null)
-const iconTea =
-    'bg-[url("data:image/gif;base64,R0lGODlhEwALAKECAAAAABISEv///////yH5BAEKAAIALAAAAAATAAsAAAIdDI6pZ+suQJyy0ocV3bbm33EcCArmiUYk1qxAUAAAOw==")]'
-
-const onInput = (evt: Event) => {
-    const target = evt.target as HTMLInputElement
-
-    emit('update:query', target.value)
-    setState(isActive.value)
-}
-
-const onClear = () => {
-    emit('update:query', '')
-
-    searchInputRef.value?.focus()
-}
-
-const setState = (hasFocusInput: boolean) => {
-    isActive.value = hasFocusInput
-
-    emit('changeState', isActive.value)
-}
-
-const onHandleEsc = () => {
-    removeSelection()
-
-    if (isActive.value && props.hasResults) {
-        emit('changeState', false)
-    }
-}
-
-const onEnter = () => {
-    setState(false)
-
-    searchInputRef.value?.blur()
-
-    emit('enter')
-}
-
-const removeSelection = () => {
-    if (searchInputRef.value) {
-        const end = searchInputRef.value.value.length
-
-        searchInputRef.value.setSelectionRange(end, end)
-    }
-}
-
 onMounted(() => {
+    window.addEventListener('click', ({ target }: MouseEvent) => {
+        if (!searchInputRef.value?.contains(target as Node)) {
+            isActive.value = false
+        }
+    })
     const sm = 640
 
     if (window.innerWidth < sm) {

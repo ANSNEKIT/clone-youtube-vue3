@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
+
 defineProps({
     results: {
         type: Object,
