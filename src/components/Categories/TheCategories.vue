@@ -1,6 +1,7 @@
 <template>
     <section
-        class="fixed top-[56px] h-[56px] z-[7]"
+        ref="categoriesWrapRef"
+        class="fixed top-[56px] h-[56px] z-[7] max-w-full"
         :class="{
             'md:ml-[72px]': sidebarState === 'compact',
             'xl:ml-[240px]': sidebarState === 'normal',
@@ -9,71 +10,80 @@
         <div
             class="border-y border-y-black/10 relative bg-white bg-opacity-95 overflow-hidden whitespace-nowrap"
         >
-            <div class="h-full absolute z-10 left-0 top-0 flex">
-                <div class="w-[56px] flex items-center justify-center bg-white">
-                    <button class="w-[32px] h-[32px] p-2 rounded-full active:bg-black/10">
-                        <IconArrowLeft width="16" height="16" class="w-4.5 h-4.5" />
-                    </button>
-                </div>
+            <CategoryNavButton
+                v-show="isShowLeft"
+                class="left-0"
+                :left="true"
+                @nav-button-click="onLeft"
+            >
+                <IconArrowLeft width="16" height="16" class="w-4.5 h-4.5" />
+            </CategoryNavButton>
 
-                <span class="block w-[50px] bg-gradient-to-r from-white"></span>
-            </div>
-
-            <div class="inline-block transition translate-x-0">
+            <div
+                ref="categoriesRef"
+                class="inline-block transition"
+                :style="caterogiesTranslateStyle"
+            >
                 <ul
-                    class="px-6 py-[11px] first-letter:py-[11px] mx-auto w-full flex max-w-screen-4xl overflow-x-auto whitespace-nowrap"
+                    class="px-6 py-[11px] first-letter:py-[11px] mx-auto w-full flex gap-x-2 max-w-screen-4xl overflow-x-auto"
                 >
-                    <li class="space-x-3">
-                        <CategotyItem
-                            v-for="(category, index) in categories"
-                            :id="index"
-                            :key="index"
-                            :is-active="index === activeItemIndex"
-                            :category="category"
-                            @change-active-category="activeItemIndex = $event"
-                        />
-                    </li>
+                    <CategoryItem
+                        v-for="(category, index) in categories"
+                        :id="index"
+                        :key="index"
+                        :is-active="index === activeItemIndex"
+                        :category="category"
+                        @change-active-category="activeItemIndex = $event"
+                    />
                 </ul>
             </div>
 
-            <div class="h-full absolute z-10 right-[240px] top-0 flex">
-                <span class="block w-[50px] bg-gradient-to-l from-white"></span>
-                <div class="w-[56px] flex items-center justify-center bg-white">
-                    <button class="w-[32px] h-[32px] p-1 rounded-full active:bg-black/10">
-                        <IconArrowRight width="20" height="20" class="w-[20px] h-[20px]" />
-                    </button>
-                </div>
-            </div>
+            <CategoryNavButton
+                v-show="isShowRight"
+                :right="true"
+                class="right-0 -translate-x-2/3"
+                @nav-button-click="onRight"
+            >
+                <IconArrowRight width="20" height="20" class="w-[20px] h-[20px]" />
+            </CategoryNavButton>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
+import { onMounted, onUnmounted, watch } from 'vue'
 import IconArrowRight from '@/components/icons/IconArrowRight.vue'
 import IconArrowLeft from '@/components/icons/IconArrowLeft.vue'
-import CategotyItem from './CategotyItem.vue'
+import CategoryItem from '@/components/Categories/CategoryItem.vue'
+import CategoryNavButton from '@/components/Categories/CategoryNavButton.vue'
+import { useCategoris } from '@/composables/categories'
 
-const store = useStore()
-const sidebarState = computed(() => store.state.sidebarState)
+const {
+    sidebarState,
+    sidebarWidth,
+    categoriesRef,
+    categoriesWrapRef,
+    activeItemIndex,
+    categories,
+    caterogiesTranslateStyle,
+    isShowRight,
+    isShowLeft,
+    throttledResize,
+    onRight,
+    onLeft,
+} = useCategoris()
 
-const activeItemIndex = ref(0)
-const categories = [
-    'Все',
-    'Видеоигры',
-    'Музыка',
-    'Сейчас в эфире',
-    'Ситкомы',
-    'Анимация',
-    'Туризм',
-    'Кулинарные шоу',
-    'Футбол',
-    'Природа',
-    'Туристические направления',
-    'Кулинария',
-    'Ремесла',
-    'Изобразительное искусство',
-    'Последние опубликованные видео',
-]
+watch(
+    () => sidebarWidth.value,
+    () => throttledResize(),
+)
+
+onMounted(() => {
+    throttledResize()
+    window.addEventListener('resize', throttledResize)
+})
+
+onUnmounted(() => {
+    window.removeEventListener('resize', throttledResize)
+})
 </script>
