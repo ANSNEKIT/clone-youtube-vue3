@@ -17,7 +17,12 @@
 
         <TheSearch class="" />
 
-        <AppButton tooltip="Голосовой поиск" :btn-class="'ml-2'" :left="isSmallScreen">
+        <AppButton
+            tooltip="Голосовой поиск"
+            btn-class="ml-2 bg-black/5 hover:bg-black/10 active:!shadow-inherit active:bg-black/20 focus:!outline focus:!outline-2 focus:!bg-transparent"
+            :left="isSmallScreen"
+            @click="$emit('openVoiceModal')"
+        >
             <IconMicrophone class="w-[24px] h-[24px] text-black" />
         </AppButton>
     </div>
@@ -36,7 +41,7 @@ defineProps({
         default: false,
     },
 })
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'openVoiceModal'])
 
 const searchMobile = ref<HTMLElement | null>(null)
 

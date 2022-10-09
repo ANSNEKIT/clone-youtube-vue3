@@ -9,7 +9,7 @@
                 class="flex shrink-0 items-center justify-between"
                 :class="{ 'opacity-0': isMobileSerchActive, 'opacity-100': !isMobileSerchActive }"
             >
-                <AppButton :btn-class="'mr-0.5'" @click="$emit('toggleSidebar')">
+                <AppButton btn-class="mr-0.5" @click="$emit('toggleSidebar')">
                     <IconBar class="block w-7 h-7 stroke-0 text-[#030303]" />
                 </AppButton>
 
@@ -20,6 +20,7 @@
                 v-show="!isHiddenSearch"
                 :is-small-screen="isSmallScreen"
                 @close="onCloseMobileSearch"
+                @open-voice-modal="isShowModalMicrophone = true"
             />
 
             <div
@@ -30,12 +31,16 @@
                 <AppButton
                     tooltip="Введите запрос"
                     class="whitespace-normal"
-                    :btn-class="'sm:hidden'"
+                    btn-class="sm:hidden"
                     @click.stop="onOpenMobileSearch"
                 >
                     <IconSearch class="w-[24px] h-[24px]" />
                 </AppButton>
-                <AppButton tooltip="Голосовой поиск" :btn-class="'ml-2 sm:hidden'">
+                <AppButton
+                    tooltip="Голосовой поиск"
+                    btn-class="ml-2 sm:hidden hover:bg-black/5 active:!shadow-inherit active:bg-black/20 focus:!outline focus:!outline-2 focus:!bg-transparent"
+                    @click.stop="isShowModalMicrophone = true"
+                >
                     <IconMicrophone class="w-[24px] h-[24px] text-black" />
                 </AppButton>
                 <DropdownSettings />
@@ -43,6 +48,12 @@
             </div>
         </div>
     </header>
+    <teleport to="body">
+        <TheSearchModalVoice
+            v-if="isShowModalMicrophone"
+            @close-modal="isShowModalMicrophone = false"
+        />
+    </teleport>
 </template>
 
 <script setup lang="ts">
@@ -58,6 +69,7 @@ import TheSearchWrapper from '@/components/Search/TheSearchWrapper.vue'
 import { throttle } from '@/composables/throttle'
 import { useStore } from 'vuex'
 import { State } from '@/types/store'
+import TheSearchModalVoice from '@/components/Search/TheSearchModalVoice.vue'
 
 defineEmits(['toggleSidebar'])
 
@@ -65,6 +77,7 @@ const { state, commit } = useStore<State>()
 
 const isMobileSerchActive = computed(() => state.isMobileSerchActive)
 const isSmallScreen = ref(false)
+const isShowModalMicrophone = ref(false)
 
 const isHiddenSearch = computed(() => !isMobileSerchActive.value && isSmallScreen.value)
 

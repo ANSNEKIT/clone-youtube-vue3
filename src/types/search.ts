@@ -13,6 +13,14 @@ type PropsSearchInput = Readonly<
         }
     }>
 >
+
+export interface Status {
+    LiSTENING: 'listening'
+    RECORDING: 'recording'
+    ERROR: 'error'
+    OFF: 'off'
+}
+
 export interface Keyword {
     value: string
     similar: string
