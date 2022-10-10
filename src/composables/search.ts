@@ -1,5 +1,11 @@
-import { EventSearchInput, Keyword, PropsSearchInput } from '@/types/search'
-import { ref } from 'vue'
+import {
+    EventSearchInput,
+    Keyword,
+    PropsModalVoiceButton,
+    PropsSearchInput,
+    Status,
+} from '@/types/search'
+import { computed, ref } from 'vue'
 
 export function useSearchInput(props: PropsSearchInput, emit: EventSearchInput) {
     const isActive = ref(false)
@@ -229,5 +235,85 @@ export function useSearch() {
         onResultClick,
         prevResult,
         nextResult,
+    }
+}
+
+export function useSearchModalVoiceButton(props: PropsModalVoiceButton) {
+    const statuses: Status = {
+        LiSTENING: 'listening',
+        RECORDING: 'recording',
+        ERROR: 'error',
+        OFF: 'off',
+    }
+
+    const status = ref<Status[keyof Status]>(statuses.LiSTENING)
+    const recordingTimeout = ref<number | null>(null)
+
+    const isStatus = (...args: Array<Status[keyof Status]>) => {
+        return args.includes(status.value)
+    }
+
+    const getTitle = computed(() => {
+        if (!props.isMicrophonePremission) {
+            return 'Голосовой поиск'
+        }
+
+        if (isStatus(statuses.OFF)) {
+            return 'Микрофон отключен. Повторите попытку'
+        }
+
+        if (isStatus(statuses.RECORDING)) {
+            return 'Что'
+        }
+
+        if (isStatus(statuses.ERROR)) {
+            return 'Запрос не распознан. Повторите попытку'
+        }
+
+        return 'Говорите...'
+    })
+
+    const _updateStatus = (stat?: Status[keyof Status]) => {
+        if (stat) {
+            status.value = stat
+        } else if (isStatus(statuses.LiSTENING)) {
+            status.value = statuses.RECORDING
+        } else if (isStatus(statuses.RECORDING)) {
+            status.value = statuses.OFF
+        } else if (isStatus(statuses.OFF, statuses.ERROR)) {
+            status.value = statuses.RECORDING
+        }
+    }
+
+    const onToggleVoiceButton = () => {
+        if (!props.isMicrophonePremission) {
+            return
+        }
+
+        if (recordingTimeout.value) {
+            clearTimeout(recordingTimeout.value)
+        }
+
+        _updateStatus()
+
+        stopRecording(5000)
+    }
+
+    const stopRecording = (dealay: number) => {
+        recordingTimeout.value = setTimeout(() => {
+            if (isStatus(statuses.RECORDING, statuses.LiSTENING)) {
+                status.value = statuses.ERROR
+            }
+        }, dealay)
+    }
+
+    return {
+        status,
+        statuses,
+        getTitle,
+        recordingTimeout,
+        isStatus,
+        onToggleVoiceButton,
+        stopRecording,
     }
 }

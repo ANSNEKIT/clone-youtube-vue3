@@ -22,6 +22,7 @@
                 <h2 class="pt-12 pb-6 flex-1 text-[24px] leading-8">{{ title }}</h2>
 
                 <AppButton
+                    v-if="isShowButtonClose"
                     class="m-2"
                     btn-class="hover:bg-black/10 active:!shadow-inherit active:bg-black/20 focus:!outline focus:!outline-2 focus:!bg-transparent"
                     @click="onClose"
@@ -46,6 +47,10 @@ defineProps({
     title: {
         type: String,
         default: '',
+    },
+    isShowButtonClose: {
+        type: Boolean,
+        default: true,
     },
 })
 const emit = defineEmits(['closeModal'])

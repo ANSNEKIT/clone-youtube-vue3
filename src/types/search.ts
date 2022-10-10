@@ -1,5 +1,6 @@
 import { ExtractPropTypes } from 'vue'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type EventSearchInput = (event: 'update:query' | 'changeState' | 'enter', ...args: any[]) => void
 type PropsSearchInput = Readonly<
     ExtractPropTypes<{
@@ -27,4 +28,13 @@ export interface Keyword {
     keyword: string
 }
 
-export type { EventSearchInput, PropsSearchInput }
+type PropsModalVoiceButton = Readonly<
+    ExtractPropTypes<{
+        isMicrophonePremission: {
+            type: BooleanConstructor
+            default: true
+        }
+    }>
+>
+
+export type { EventSearchInput, PropsSearchInput, PropsModalVoiceButton }
