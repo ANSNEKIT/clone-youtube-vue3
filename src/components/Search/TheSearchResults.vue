@@ -25,15 +25,24 @@
             <li
                 class="self-end pl-2.5 pr-6 text-sm italic text-neutral-500 select-none hover:text-black focus:text-black cursor-default"
             >
-                <button class="">Пожаловаться на поисковые подсказки</button>
+                <button class="" @click="isShowModalPrediction = true">
+                    Пожаловаться на поисковые подсказки
+                </button>
             </li>
+            <teleport to="body">
+                <TheSearchModalPrediction
+                    v-if="isShowModalPrediction"
+                    @close-modal="isShowModalPrediction = false"
+                />
+            </teleport>
         </ul>
     </div>
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { PropType, ref } from 'vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
+import TheSearchModalPrediction from './TheSearchModalPrediction.vue'
 
 defineProps({
     results: {
@@ -46,4 +55,6 @@ defineProps({
     },
 })
 defineEmits(['resultItemMoseenter', 'resultItemMouseleave', 'resultClick'])
+
+const isShowModalPrediction = ref(false)
 </script>

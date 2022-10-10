@@ -5,7 +5,7 @@
             приложению доступ к микрофону.
         </p>
         <div v-else class="flex flex-1 h-[200px]"></div>
-        <div class="mb-4 w-full">
+        <div class="w-full">
             <TheSearchModalVoiceButton
                 :is-microphone-premission="isMicrophonePremission"
                 @change-text="title = $event"

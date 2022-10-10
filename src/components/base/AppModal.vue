@@ -19,7 +19,7 @@
 
         <div v-if="isOpen" class="my-8 relative z-50 bg-white max-w-2xl min-w-[576px]">
             <div id="header" class="pl-8 flex w-full items-start">
-                <h2 class="pt-12 pb-6 flex-1 text-[24px] leading-8">{{ title }}</h2>
+                <h2 v-if="title" class="pt-12 pb-6 flex-1 text-[24px] leading-8">{{ title }}</h2>
 
                 <AppButton
                     v-if="isShowButtonClose"
@@ -30,8 +30,11 @@
                     <IconClose class="w-[24px] h-[24px] text-[#333]" />
                 </AppButton>
             </div>
-            <div class="p-8 pt-0">
+            <div class="p-7">
                 <slot />
+            </div>
+            <div v-if="$slots.footer" class="py-2 flex justify-end items-center">
+                <slot name="footer" :close="onClose" />
             </div>
         </div>
     </div>
