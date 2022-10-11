@@ -74,7 +74,7 @@ export function useSearch() {
     const activeSearchResultId = ref<number | null>(null)
     const isShowResults = ref(false)
     const results = ref<Array<Keyword>>([])
-    const _keywords = [
+    const keywords = [
         {
             value: 'javascript',
             similar: '',
@@ -158,7 +158,7 @@ export function useSearch() {
         if (query.value === '') {
             results.value = []
         } else {
-            results.value = _keywords
+            results.value = keywords
                 .filter((key: Keyword) => {
                     return key.keyword.includes(_trimmedQuery())
                 })
@@ -230,6 +230,7 @@ export function useSearch() {
         activeSearchResultId,
         isShowResults,
         results,
+        keywords,
         toggleShowResults,
         updateQueryResults,
         onResultClick,

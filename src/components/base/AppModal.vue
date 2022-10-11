@@ -17,7 +17,11 @@
             <AppShadow v-if="isOpen" :opacity="80" @click="onClose" />
         </Transition>
 
-        <div v-if="isOpen" class="my-8 relative z-50 bg-white max-w-2xl min-w-[576px]">
+        <div
+            v-if="isOpen"
+            class="my-8 relative z-50 bg-white w-full sm:w-2/3 max-w-2xl overflow-auto"
+            style="max-height: calc(100vh - 64px)"
+        >
             <div id="header" class="pl-8 flex w-full items-start">
                 <h2 v-if="title" class="pt-12 pb-6 flex-1 text-[24px] leading-8">{{ title }}</h2>
 

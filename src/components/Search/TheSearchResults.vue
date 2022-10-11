@@ -32,6 +32,7 @@
             <teleport to="body">
                 <TheSearchModalPrediction
                     v-if="isShowModalPrediction"
+                    :search-predictions="results"
                     @close-modal="isShowModalPrediction = false"
                 />
             </teleport>
@@ -43,11 +44,12 @@
 import { PropType, ref } from 'vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import TheSearchModalPrediction from './TheSearchModalPrediction.vue'
+import { Keyword } from '@/types/search'
 
 defineProps({
     results: {
-        type: Object,
-        default: () => ({}),
+        type: Array as PropType<Array<Keyword>>,
+        default: () => [],
     },
     activeResultId: {
         type: Number as PropType<number | null>,
