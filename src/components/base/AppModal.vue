@@ -19,7 +19,7 @@
 
         <div
             v-if="isOpen"
-            class="my-8 relative z-50 bg-white w-full sm:w-2/3 max-w-2xl overflow-auto"
+            class="my-8 flex flex-col relative z-50 bg-white w-full sm:w-2/3 max-w-2xl"
             style="max-height: calc(100vh - 64px)"
         >
             <div id="header" class="pl-8 flex w-full items-start">
@@ -34,7 +34,7 @@
                     <IconClose class="w-[24px] h-[24px] text-[#333]" />
                 </AppButton>
             </div>
-            <div class="p-7">
+            <div class="p-7 overflow-auto">
                 <slot />
             </div>
             <div v-if="$slots.footer" class="py-2 flex justify-end items-center">

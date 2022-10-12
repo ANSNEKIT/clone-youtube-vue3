@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { Keyword } from '@/types/search'
 import { PropType } from 'vue'
-import AppCheckbox from '../base/AppCheckbox.vue'
+import AppCheckbox from '@/components/base/AppCheckbox.vue'
 
 defineProps({
     predictions: {

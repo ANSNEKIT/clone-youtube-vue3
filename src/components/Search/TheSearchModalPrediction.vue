@@ -9,7 +9,16 @@
 
         <h2 class="mt-5 text-sm text-[#606060]">Какие нарушения вы обнаружили в подсказках?</h2>
 
-        <TheSearchPredictionCategories  v-model="selectedCategory" :categories="categories" />
+        <TheSearchPredictionCategories v-model="selectedCategory" :categories="categories" />
+
+        <div class="mt-6 text-[#333]">
+            <AppTextarea
+                v-model="message"
+                placeholder="Предоставьте дополнительные сведения (необязательно)"
+                :limit="500"
+                rows="2"
+            />
+        </div>
 
         <template #footer="{ close }">
             <AppButtonDefault class="mr-3" @click="close"> Отмена </AppButtonDefault>
@@ -25,6 +34,7 @@ import TheSearchPredictionList from '@/components/Search/TheSearchPredictionList
 import { Keyword } from '@/types/search'
 import AppButtonDefault from '@/components/base/AppButtonDefault.vue'
 import TheSearchPredictionCategories from './TheSearchPredictionCategories.vue'
+import AppTextarea from '@/components/base/AppTextarea.vue'
 
 defineProps({
     searchPredictions: {
@@ -43,4 +53,5 @@ const categories = [
     'Призывы к совершению опасных действий и причинению вреда окружающим',
     'Другое',
 ]
+const message = ref('')
 </script>
