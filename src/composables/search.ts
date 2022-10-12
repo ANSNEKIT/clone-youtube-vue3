@@ -248,7 +248,7 @@ export function useSearchModalVoiceButton(props: PropsModalVoiceButton) {
     }
 
     const status = ref<Status[keyof Status]>(statuses.LiSTENING)
-    const recordingTimeout = ref<number | null>(null)
+    const recordingTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 
     const isStatus = (...args: Array<Status[keyof Status]>) => {
         return args.includes(status.value)
