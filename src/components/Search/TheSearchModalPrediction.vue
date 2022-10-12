@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import AppModal from '@/components/base/AppModal.vue'
-import { PropType, ref } from 'vue'
+import { computed, PropType, ref } from 'vue'
 import TheSearchPredictionList from '@/components/Search/TheSearchPredictionList.vue'
 import { Keyword } from '@/types/search'
 import AppButtonDefault from '@/components/base/AppButtonDefault.vue'
@@ -43,9 +43,14 @@ defineProps({
     },
 })
 
-const isDisabled = ref(true)
 const selectedSearchPredictions = ref<string[]>([])
 const selectedCategory = ref('')
+const message = ref('')
+
+const isDisabled = computed(() => {
+    return selectedSearchPredictions.value.length === 0 && !selectedCategory.value && !message.value
+})
+
 const categories = [
     'Проявления нетерпимости и призывы к ней',
     'Материалы сексуального характера',
@@ -53,5 +58,4 @@ const categories = [
     'Призывы к совершению опасных действий и причинению вреда окружающим',
     'Другое',
 ]
-const message = ref('')
 </script>
