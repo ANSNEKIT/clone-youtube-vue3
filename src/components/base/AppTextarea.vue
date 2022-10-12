@@ -38,8 +38,6 @@ const calcHeight = () => {
         textareaRef.value.style.overflow = 'hidden'
         textareaRef.value.style.height = 'auto'
         textareaRef.value.style.height = `${textareaRef.value.scrollHeight}px`
-
-        console.log(123)
     }
 }
 </script>
