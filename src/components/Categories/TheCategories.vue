@@ -1,11 +1,12 @@
 <template>
     <section
         ref="categoriesWrapRef"
-        class="fixed top-[56px] h-[56px] z-[7] max-w-full"
+        class="fixed top-[56px] h-[56px] z-[7]"
         :class="{
             'md:ml-[72px]': sidebarState === 'compact',
             'xl:ml-[240px]': sidebarState === 'normal',
         }"
+        :style="{ maxWidth: !isMobile ? `calc(100% - ${sidebarWidth}px)` : '100%' }"
     >
         <div
             class="border-y border-y-black/10 relative bg-white bg-opacity-95 overflow-hidden whitespace-nowrap"
@@ -41,7 +42,7 @@
             <CategoryNavButton
                 v-show="isShowRight"
                 :right="true"
-                class="right-0 -translate-x-2/3"
+                class="right-0"
                 @nav-button-click="onRight"
             >
                 <IconArrowRight width="20" height="20" class="w-[20px] h-[20px]" />
@@ -59,6 +60,7 @@ import CategoryNavButton from '@/components/Categories/CategoryNavButton.vue'
 import { useCategoris } from '@/composables/categories'
 
 const {
+    isMobile,
     sidebarState,
     sidebarWidth,
     categoriesRef,

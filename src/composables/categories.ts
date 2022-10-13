@@ -13,6 +13,7 @@ export function useCategoris() {
     const activeItemIndex = ref(0)
     const _navStepMax = ref(0)
     const _navStep = ref(0)
+    const isMobile = ref(false)
     const categories = [
         'Все',
         'Видеоигры',
@@ -39,7 +40,15 @@ export function useCategoris() {
     const isShowRight = computed(() => _navStep.value < _navStepMax.value)
     const isShowLeft = computed(() => _navStep.value !== 0)
 
-    const onResize = () => {
+    const _onResize = () => {
+        const md = 768
+
+        if (window.innerWidth < md) {
+            isMobile.value = true
+        } else {
+            isMobile.value = false
+        }
+
         if (categoriesRef.value && categoriesWrapRef.value) {
             categoriesWidth.value = categoriesRef.value.offsetWidth
             categoriesWrapWidth.value = categoriesWrapRef.value.offsetWidth
@@ -48,7 +57,7 @@ export function useCategoris() {
             )
         }
     }
-    const throttledResize = throttle(onResize, 50)
+    const throttledResize = throttle(_onResize, 50)
 
     const onRight = () => {
         if (_navStep.value < _navStepMax.value) {
@@ -62,6 +71,7 @@ export function useCategoris() {
     }
 
     return {
+        isMobile,
         sidebarState,
         sidebarWidth,
         categoriesRef,
