@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/vue'
 import TheSearchModalPrediction from '@/components/Search/TheSearchModalPrediction.vue'
-import { fireEvent, waitForElementToBeRemoved } from '@testing-library/dom'
+import { fireEvent, waitForElementToBeRemoved, within } from '@testing-library/dom'
 import { Keyword } from '@/types/search'
 
 function renderModal(predictions: Keyword[] = [], categories: string[] = []) {
@@ -51,6 +51,14 @@ describe('when open modal', () => {
         renderModal([], categories)
 
         categories.forEach((el) => screen.getByText(el))
+    })
+
+    it('show textarea', () => {
+        renderModal([], [])
+
+        const dialog = screen.getByRole('dialog')
+
+        within(dialog).getByRole('textbox')
     })
 })
 
