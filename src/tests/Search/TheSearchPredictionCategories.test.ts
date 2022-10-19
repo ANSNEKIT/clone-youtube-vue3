@@ -19,19 +19,16 @@ it('shows search categories unchecked', () => {
     renderCategories()
 
     categories.forEach((el) => {
-        const checkbox = screen.getByLabelText(el) as HTMLInputElement
-        expect(checkbox.checked).toBe(false)
+        expect(screen.getByLabelText(el)).not.toBeChecked()
     })
 })
 
 it('shows search categories checked ', () => {
     renderCategories(checkedCategory)
 
-    const radio1 = screen.getByLabelText(categories[0]) as HTMLInputElement
-    expect(radio1.checked).toBe(true)
+    expect(screen.getByLabelText(categories[0])).toBeChecked()
 
     categories.slice(1).forEach((el) => {
-        const radio = screen.getByLabelText(el) as HTMLInputElement
-        expect(radio.checked).toBe(false)
+        expect(screen.getByLabelText(el)).not.toBeChecked()
     })
 })

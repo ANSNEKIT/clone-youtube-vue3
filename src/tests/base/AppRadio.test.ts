@@ -23,8 +23,7 @@ it('render checked with label', () => {
 
     renderRadio(isChecked)
 
-    const radio = screen.getByLabelText(label) as HTMLInputElement
-    expect(radio.checked).toBe(isChecked)
+    expect(screen.getByLabelText(label)).toBeChecked()
 })
 
 it('render unchecked with label', () => {
@@ -32,8 +31,7 @@ it('render unchecked with label', () => {
 
     renderRadio(isChecked)
 
-    const radio = screen.getByLabelText(label) as HTMLInputElement
-    expect(radio.checked).toBe(isChecked)
+    expect(screen.getByLabelText(label)).not.toBeChecked()
 })
 
 it('render with value', () => {

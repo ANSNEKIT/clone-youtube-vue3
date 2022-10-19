@@ -35,19 +35,16 @@ it('shows search predictions unchecked', () => {
     renderPredictions()
 
     predictions.forEach(({ keyword }) => {
-        const checkbox = screen.getByLabelText(keyword) as HTMLInputElement
-        expect(checkbox.checked).toBe(false)
+        expect(screen.getByLabelText(keyword)).not.toBeChecked()
     })
 })
 
 it('shows search predictions checked ', () => {
     renderPredictions(checkedPredictions)
 
-    const checkbox1 = screen.getByLabelText(predictions[0].keyword) as HTMLInputElement
-    expect(checkbox1.checked).toBe(false)
+    expect(screen.getByLabelText(predictions[0].keyword)).not.toBeChecked()
 
     predictions.slice(1).forEach(({ keyword }) => {
-        const checkbox = screen.getByLabelText(keyword) as HTMLInputElement
-        expect(checkbox.checked).toBe(true)
+        expect(screen.getByLabelText(keyword)).toBeChecked()
     })
 })

@@ -18,13 +18,11 @@ it('render with label and checked ', () => {
 
     render(AppCheckbox, config)
 
-    const checkbox = screen.getByLabelText(label) as HTMLInputElement
-    expect(checkbox.checked).toBe(true)
+    expect(screen.getByLabelText(label)).toBeChecked()
 })
 
 it('render unchecked', () => {
     render(AppCheckbox)
 
-    const checkbox = screen.getByRole('checkbox') as HTMLInputElement
-    expect(checkbox.checked).toBe(false)
+    expect(screen.getByRole('checkbox')).not.toBeChecked()
 })
