@@ -3,6 +3,7 @@
         <button
             class="w-[40px] h-[40px] p-2 flex shrink-0 items-center justify-center rounded-full active:shadow-lg focus:bg-black/10"
             :class="btnClass"
+            data-testid="app-button"
             @click="$emit('click', $event)"
             @mousedown.prevent
         >

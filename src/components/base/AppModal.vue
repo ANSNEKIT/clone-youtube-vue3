@@ -2,6 +2,7 @@
     <div
         ref="modalRef"
         tabindex="-1"
+        role="dialog"
         class="max-h-fit fixed flex justify-center items-start inset-0 z-50 focus:outline-none"
         @keydown.esc="onClose"
     >
