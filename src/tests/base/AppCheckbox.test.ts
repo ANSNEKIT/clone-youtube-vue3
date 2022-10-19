@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import AppCheckbox from '@/components/base/AppCheckbox.vue'
 
-test('render checked checkbox with label ', () => {
+it('render with label and checked ', () => {
     const label = 'label checkbox'
     const value = 1
     const modelVal = [value, 2, 3]
@@ -22,7 +22,7 @@ test('render checked checkbox with label ', () => {
     expect(checkbox.checked).toBe(true)
 })
 
-test('render unchecked checkbox', () => {
+it('render unchecked', () => {
     render(AppCheckbox)
 
     const checkbox = screen.getByRole('checkbox') as HTMLInputElement

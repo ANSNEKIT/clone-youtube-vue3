@@ -1,8 +1,19 @@
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import AppButton from '@/components/base/AppButton.vue'
 
-test('test render button', () => {
-    const { debug } = render(AppButton)
+function renderAppButton(body = '') {
+    const config = {
+        slots: {
+            default: body,
+        },
+    }
+    render(AppButton, config)
+}
 
-    debug()
+it('render with icon', () => {
+    const body = 'dafault slot'
+
+    renderAppButton(body)
+
+    screen.getByText(body)
 })

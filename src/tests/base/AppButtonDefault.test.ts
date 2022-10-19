@@ -1,7 +1,7 @@
-import { prettyDOM, render, screen } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import AppButtonDefault from '@/components/base/AppButtonDefault.vue'
 
-test('render AppButtonDefault', () => {
+it('render with text', () => {
     // givet (arrange)
     const options = {
         slots: {
