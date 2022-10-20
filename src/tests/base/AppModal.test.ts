@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/vue'
 import AppModal from '@/components/base/AppModal.vue'
-import { fireEvent, waitForElementToBeRemoved } from '@testing-library/dom'
+import { waitForElementToBeRemoved } from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
+
+const user = userEvent.setup()
+const body = 'default slot body'
 
 function renderAppModal(body = '', footer = '', isCloseButton = false) {
     const config = {
@@ -19,8 +23,6 @@ function renderAppModal(body = '', footer = '', isCloseButton = false) {
 function assertModalClosed(body = '') {
     return waitForElementToBeRemoved([screen.queryByText(body), screen.queryByTestId('app-shadow')])
 }
-
-const body = 'default slot body'
 
 describe('rendering', () => {
     it('render with body and footer', () => {
@@ -55,7 +57,7 @@ describe('closing', () => {
         const isCloseButton = true
         renderAppModal(body, '', isCloseButton)
 
-        fireEvent.click(screen.getByTestId('app-button'))
+        user.click(screen.getByTestId('app-button'))
 
         return assertModalClosed(body)
     })
@@ -63,7 +65,7 @@ describe('closing', () => {
     it('close on click overlay', () => {
         renderAppModal(body)
 
-        fireEvent.click(screen.getByTestId('app-shadow'))
+        user.click(screen.getByTestId('app-shadow'))
 
         return assertModalClosed(body)
     })
@@ -75,7 +77,7 @@ describe('closing', () => {
         </template>`
         renderAppModal(body, cancelButton)
 
-        fireEvent.click(screen.getByRole('button', { name: 'Отмена' }))
+        user.click(screen.getByRole('button', { name: 'Отмена' }))
 
         return assertModalClosed(body)
     })
@@ -83,7 +85,8 @@ describe('closing', () => {
     it('close on press ESC key', () => {
         renderAppModal(body)
 
-        fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Esc' })
+        screen.getByRole('dialog').focus()
+        user.keyboard('{Esc}')
 
         return assertModalClosed(body)
     })

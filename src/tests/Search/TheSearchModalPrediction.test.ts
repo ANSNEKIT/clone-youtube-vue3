@@ -1,19 +1,10 @@
+import userEvent from '@testing-library/user-event'
 import { render, screen } from '@testing-library/vue'
 import TheSearchModalPrediction from '@/components/Search/TheSearchModalPrediction.vue'
-import { fireEvent, waitForElementToBeRemoved, within } from '@testing-library/dom'
+import { waitForElementToBeRemoved, within } from '@testing-library/dom'
 import { Keyword } from '@/types/search'
 
-function renderModal(predictions: Keyword[] = [], categories: string[] = []) {
-    const config = {
-        props: {
-            searchPredictions: predictions,
-        },
-        data: () => ({ categories }),
-    }
-
-    return render(TheSearchModalPrediction, config)
-}
-
+const user = userEvent.setup()
 const predictions = [
     {
         value: 'value 1',
@@ -31,7 +22,6 @@ const predictions = [
         keyword: 'keyword 3',
     },
 ]
-
 const categories = [
     'Проявления нетерпимости и призывы к ней',
     'Материалы сексуального характера',
@@ -39,6 +29,17 @@ const categories = [
     'Призывы к совершению опасных действий и причинению вреда окружающим',
     'Другое',
 ]
+
+function renderModal(predictions: Keyword[] = [], categories: string[] = []) {
+    const config = {
+        props: {
+            searchPredictions: predictions,
+        },
+        data: () => ({ categories }),
+    }
+
+    return render(TheSearchModalPrediction, config)
+}
 
 describe('when open modal', () => {
     it('show search predictions', () => {
@@ -66,7 +67,7 @@ describe('when closed modal', () => {
     it('does not show search predictions', () => {
         renderModal(predictions)
 
-        fireEvent.click(screen.getByRole('button', { name: 'Отмена' }))
+        user.click(screen.getByRole('button', { name: 'Отмена' }))
 
         return waitForElementToBeRemoved(
             predictions.map(({ keyword }) => screen.queryByText(keyword)),
@@ -76,7 +77,7 @@ describe('when closed modal', () => {
     it('does not show search categories', () => {
         renderModal([], categories)
 
-        fireEvent.click(screen.getByRole('button', { name: 'Отмена' }))
+        user.click(screen.getByRole('button', { name: 'Отмена' }))
 
         return waitForElementToBeRemoved(categories.map((el) => screen.queryByText(el)))
     })
