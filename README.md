@@ -1,6 +1,8 @@
 # Vue 3 + TypeScript + Vite
 
-Клон ютуба. Проект создан на Vue 3 + Vite 3 + TypeScript  + Tailwind CSS
+Клон ютуба. Проект создан на Vue 3 + Vite 3 + TypeScript  + Tailwind CSS + Jest
+
+В настоящий момент проект еще находится в разработке. Со временем будут добавляться новые фичи и будет проводиться рефакторинг
 
 [Ссылка на демо](https://ansnekit.github.io/clone-youtube-vue3)
 
@@ -8,6 +10,7 @@
 ## Особенности
 
 - Composition API
+- Базовые компоненты покрыты Unit и Snapshot тестами
 - Использованы типы Typecsript
 - Сложная логика компонентов вынесена в функции composables для сохранения чистоты кода
 - События resize обернуты в throttle функцию
