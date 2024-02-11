@@ -29,7 +29,7 @@
                 role="combobox"
                 aria-haspopup="false"
                 aria-autocomplete="list"
-                class="w-full h-[24px] text-lg outline-0"
+                class="w-full h-[24px] bg-transparent text-lg outline-0"
                 @input="onInput"
                 @focus="setState(true)"
                 @click.stop="setState(true)"
